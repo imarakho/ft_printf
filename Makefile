@@ -16,24 +16,40 @@ SRC = main.c \
 	check_size.c
 
 OBJ = $(SRC:.c=.o)
-FLAGS = -Wall -Wextra -Werror
+
+LIBOBJ = libft/*.o
+
+INC = -I ft_printf.h
+
+CFLAGS = -c -Wall -Wextra -Werror
+
+LIBCR = make -C libft/
+
+LIBINC = -I libft/includes/libft.h -L./libft -lft
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	gcc -c $(FLAGS) $(SRC) -I ft_printf.h
-	ar	rc $(NAME) $(OBJ)
+	$(LIBCR) all
+	ar rc $(NAME) $(OBJ) $(LIBOBJ)
 	ranlib $(NAME)
-	
-lldb:
-	@gcc -g $(FLAGS) $(OBJ) -o $(NAME)
-	@echo "Use 'debug' for lldb."
-lclean:
-	@rm -f debug
-	@echo "'debug' removed!"
+
+%.o: %.c
+	gcc $(INC) $(CFLAGS) -o $@ $<
+
 clean:
-	@rm -f $(OBJ)
-	@echo "Objects removed!"
+	rm -f $(OBJ)
+
 fclean: clean
-	@rm -f $(NAME)
-	@echo "Executable removed!"
+	rm -f $(NAME)
+
 re: fclean all
+
+liball:
+	$(LIBCR) all
+
+libclean:
+	$(LIBCR) clean
+
+libre:
+	$(LIBCR) re 
