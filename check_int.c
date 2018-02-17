@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 15:28:28 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/17 17:41:17 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/17 19:15:49 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void    check_int(t_par *pr, va_list *ap)
 	pr->s = ft_itoa_base(pr->val, 10);
 	if (!pr->minus)
 	{
+		//printf("%d\n", pr->space);
+		//exit(1);
 		//printf("pzd\n");
 		make_width(pr , 'd');
 		if (pr->plus)

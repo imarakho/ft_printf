@@ -15,17 +15,21 @@ SRC = main.c \
 	print_memory.c \
 	check_size.c
 
-FLAGS = -c -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 OBJ = $(SRC:.c=.o)
 
 all:$(NAME)
 
- $(NAME):
-	gcc $(FLAGS) $(SRC) -I ft_printf.h
-	ar	rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+ $(NAME): $(OBJ)
+	gcc $(FLAGS) $(SRC) -o $(NAME)
 
+lldb:
+	@gcc -c $(FLAGS) $(OBJ) -o $(NAME) -I ft_printf.h
+	@echo "Use 'debug' for lldb."
+lclean:
+	@rm -f debug
+	@echo "'debug' removed!"
 clean:
 	@rm -f $(OBJ)
 	@echo "Objects removed!"

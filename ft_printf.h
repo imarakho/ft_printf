@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:23:09 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/17 17:51:34 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/17 19:12:01 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void    check_size(const char *format, t_par *pr, int *i);
 void	make_size(t_par *pr);
 
 /*for makefile
-    $(NAME): $(OBJ)
+    $(NAME):
 	gcc -c $(FLAGS) $(SRC) -I ft_printf.h
 	ar	rc $(NAME) $(OBJ)
 	ranlib $(NAME)
