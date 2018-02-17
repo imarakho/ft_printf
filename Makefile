@@ -21,17 +21,11 @@ OBJ = $(SRC:.c=.o)
 
 all:$(NAME)
 
- $(NAME): $(OBJ)
+ $(NAME):
 	gcc $(FLAGS) $(SRC) -I ft_printf.h
 	ar	rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
-lldb:
-	@gcc -c $(FLAGS) $(OBJ) -o $(NAME) -I ft_printf.h
-	@echo "Use 'debug' for lldb."
-lclean:
-	@rm -f debug
-	@echo "'debug' removed!"
 clean:
 	@rm -f $(OBJ)
 	@echo "Objects removed!"
