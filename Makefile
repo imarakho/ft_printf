@@ -15,7 +15,7 @@ SRC = main.c \
 	print_memory.c \
 	check_size.c
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall
 
 OBJ = $(SRC:.c=.o)
 
