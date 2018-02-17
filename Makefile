@@ -17,39 +17,24 @@ SRC = main.c \
 
 OBJ = $(SRC:.c=.o)
 
-LIBOBJ = libft/*.o
-
-INC = -I ft_printf.h
-
-CFLAGS = -c -Wall -Wextra -Werror
-
-LIBCR = make -C libft/
-
-LIBINC = -I libft/includes/libft.h -L./libft -lft
-
-all: $(NAME)
+%.o: %.c
+	gcc -I ft_printf.h $(FLAGS) -o $@ $<
 
 $(NAME): $(OBJ)
-	$(LIBCR) all
-	ar rc $(NAME) $(OBJ) $(LIBOBJ)
+	gcc -c $(FLAGS) $(SRC)
+	ar	rc $(NAME) $(OBJ)
 	ranlib $(NAME)
-
-%.o: %.c
-	gcc $(INC) $(CFLAGS) -o $@ $<
-
+	
+lldb:
+	@gcc -c $(FLAGS) $(OBJ) -o $(NAME) -I ft_printf.h
+	@echo "Use 'debug' for lldb."
+lclean:
+	@rm -f debug
+	@echo "'debug' removed!"
 clean:
-	rm -f $(OBJ)
-
+	@rm -f $(OBJ)
+	@echo "Objects removed!"
 fclean: clean
-	rm -f $(NAME)
-
+	@rm -f $(NAME)
+	@echo "Executable removed!"
 re: fclean all
-
-liball:
-	$(LIBCR) all
-
-libclean:
-	$(LIBCR) clean
-
-libre:
-	$(LIBCR) re 
