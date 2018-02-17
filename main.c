@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:41:31 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/17 19:46:57 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/17 20:32:12 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ int		ft_printf(const char * format, ... )
 int     main()
 {
 	//long int d1=123;
-	printf ("%%zd\n", 1133);
-	ft_printf("%%zd\n", 1133);
+	printf ("%.     *d\n", 50, 44);
+	ft_printf("%.   *d\n", 50, 44);
 	return (0);
-}
-*/
+}*/

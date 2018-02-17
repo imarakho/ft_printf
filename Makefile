@@ -21,7 +21,7 @@ OBJ = $(SRC:.c=.o)
 
 all:$(NAME)
 
-$(NAME):
+ $(NAME):
 	gcc -c $(FLAGS) $(SRC) -I ft_printf.h
 	ar	rc $(NAME) $(OBJ)
 	ranlib $(NAME)

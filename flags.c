@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/17 19:59:24 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/17 20:30:03 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	make_width(t_par *pr, char spec)
  //       return ;
 	if ((spec == 'd' && pr->plus && pr->space != 0) || spec == '%')
 		pr->space--;
-     //printf("%d\n", pr->space);
    //  exit(1);
 	if (pr->space > 0)
 			{
@@ -31,7 +30,7 @@ void	make_width(t_par *pr, char spec)
                     pr->space -= pr->pres;
                     if(pr->pres > 0 && ft_strlen(pr->s) < pr->pres)
                         pr->pres -= ft_strlen(pr->s);
-                    if(pr->space > 0)
+                  //  if(pr->space > 0)
 				    while (pr->space--)
                     {
                     if (pr->nll && ! pr->minus)
@@ -44,12 +43,21 @@ void	make_width(t_par *pr, char spec)
                 }
                 else if(pr->pres != 0)
                 {
+                    while (pr->space--)
+                         ft_putchar(' ');
                     pr->pres -= ft_strlen(pr->s);
                     if(pr->pres != 0)
                         while(pr->pres--)
                             ft_putchar('0');
                 }
 			}
+        else
+        {
+            if(pr->pres > ft_strlen(pr->s))
+                 pr->pres -= ft_strlen(pr->s);
+            while(pr->pres--)
+                            ft_putchar('0');
+        }
 }
 
 void    parse_width(int *i, t_par *pr, const char *format)
@@ -118,21 +126,21 @@ void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)
         if (format[*i] == '.')
         {
             *i += 1;
-          //  if (ft_isdigit(format[*i]) == '-')
-          //      *i += 1;
-           // if (ft_isdigit(format[*i]))
-                {
-                    //while (ft_isdigit(format[*i]))
+
+                    if(ft_isdigit(format[*i]))
                     {						
 		                pr->pres = ft_atoi(&format[*i]);
                        // exit (1);
                         pr->res += ft_atoi(&format[*i]);					
 		                *i += ft_strlen(ft_itoa_base(pr->pres, 10));
 	                }
-
-                }
-             if (format[*i] == '*')
-                pr->pres = va_arg(*ap, int);
+                    else if (format[*i] == '*')
+                    {
+                    //    while (format[*i] != '*')
+                     //       *i += 1;
+                        pr->pres = va_arg(*ap, int);
+                        *i += 1;
+                    }
 
         }
         if(ft_isdigit(format[*i]) && format[*i] != '0')
