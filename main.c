@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:41:31 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/17 19:24:56 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/17 19:29:28 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ int		ft_printf(const char * format, ... )
 	va_end (ap);
 	return (pr.res);
 }
-
+/*
 int     main()
 {
 	//long int d1=123;
 	printf ("% d\n", 33);
 	ft_printf("% d\n", 33);
 	return (0);
-}
+}*/
