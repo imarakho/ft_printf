@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 17:59:43 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 18:01:33 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ void    check_pointer(t_par *pr, va_list *ap)
 {
 	pr->ptr = (uintmax_t)va_arg(*ap, void *);
 	pr->s = ft_unsitoa_base(pr->ptr, 16);
+	pr->d = -1;			
+		while(pr->s[++pr->d] != '\0')
+			pr->s[pr->d] = ft_tolower(pr->s[pr->d]);
+		pr->d = 0;
 	if(pr->space > 0)
 		pr->space -= 6;
 	if (!pr->minus)
@@ -64,12 +68,12 @@ void    check_pointer(t_par *pr, va_list *ap)
 		{
 			make_width(pr , 'p');
 		}
-     //   ft_putstr("0x7fff");
+        ft_putstr("0x");
 		ft_putstr(pr->s);
 	}
 	else
 	{
-        //ft_putstr("0x7fff");
+        ft_putstr("0x");
         ft_putstr(pr->s);
 		if (pr->space > ft_strlen(pr->s))
 		{
