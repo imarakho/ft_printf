@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 15:29:04 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 17:07:55 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 17:27:36 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,48 +17,61 @@ void	make_size(t_par *pr, char md, va_list *ap)
 	if (pr->sz == 0)
 	{
 		if (md == 'c' || md == 'd')
-			pr->val = (int)pr->val;
+			pr->val = va_arg(*ap, int);
+			//pr->val = (int)pr->val;
 		else if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
-			pr->uval = (unsigned int)pr->uval;
+			pr->uval = va_arg(*ap, unsigned int);
+			//pr->uval = (unsigned int)pr->uval;
 	}
 	if (pr->sz == 'c')
 	{
 		if (md == 'd')
-			pr->val = (char)pr->val;
+			pr->val = va_arg(*ap, char);
+			//pr->val = (char)pr->val;
 		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
-			pr->uval = (unsigned char)pr->uval;
+			pr->uval = va_arg(*ap, unsigned char);
+			//pr->uval = (unsigned char)pr->uval;
 	}
 	else if (pr->sz == 'h')
 	{
 		if (md == 'd')
-			pr->val = (short)pr->val;
+			pr->val = va_arg(*ap, short);
+			//pr->val = (short)pr->val;
 		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
-			pr->uval = (unsigned short)pr->uval;
+			pr->uval = va_arg(*ap, unsigned short);
+			//pr->uval = (unsigned short)pr->uval;
 	}
 	else if (pr->sz == 'l')
 	{
 		if (md == 'd')
-			pr->val = (long)pr->val;
+			pr->val = va_arg(*ap, long);
+			//pr->val = (long)pr->val;
 		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
-			pr->uval = (unsigned long)pr->uval;
+			pr->uval = va_arg(*ap, unsigned long);
+			//pr->uval = (unsigned long)pr->uval;
 	}
 	else if (pr->sz == 'm')
 	{
 		if (md == 'd')
-			pr->val = (long long)pr->val;
+			pr->val = va_arg(*ap, long long);
+		//	pr->val = (long long)pr->val;
 		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
-			pr->uval = (unsigned long long)pr->uval;
+			pr->uval = va_arg(*ap, unsigned long long);
+			//pr->uval = (unsigned long long)pr->uval;
 	}
 	else if (pr->sz == 'j')
 	{
 		if (md == 'd')
-			pr->val = (uintmax_t)pr->val;
+			pr->val = va_arg(*ap, intmax_t);
+			//pr->val = (intmax_t)pr->val;
 		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
-			pr->uval = (uintmax_t)pr->uval;
+			pr->uval = va_arg(*ap, uintmax_t);
+			//pr->uval = (uintmax_t)pr->uval;
 	}
 	else if (pr->sz == 'z')
 	{
-		pr->uval = (size_t)pr->uval;
+		pr->uval = va_arg(*ap, size_t);
+		//pr->uval = (size_t)pr->uval;
 	}
 		
 }
