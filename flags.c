@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/17 20:38:28 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 14:58:37 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	make_width(t_par *pr, char spec)
 {
+    
  //   if(pr->space <= 0)
  //       return ;
 	if ((spec == 'd' && pr->plus && pr->space != 0) || spec == '%')
@@ -31,23 +32,23 @@ void	make_width(t_par *pr, char spec)
                     if(pr->pres > 0 && ft_strlen(pr->s) < pr->pres)
                         pr->pres -= ft_strlen(pr->s);
                   //  if(pr->space > 0)
-				    while (pr->space-- && pr->space > -1000)
+				    while (pr->space-- && pr->space > 0)
                     {
                     if (pr->nll && ! pr->minus)
                         ft_putchar('0');
                     else
 					    ft_putchar(' ');
                     }
-                    while(pr->pres-- && pr->pres > -1000)
+                    while(pr->pres-- && pr->pres > 0)
                         ft_putchar('0');
                 }
                 else if(pr->pres != 0)
                 {
-                    while (pr->space-- && pr->space > -1000)
+                    while (pr->space-- && pr->space > 0)
                          ft_putchar(' ');
                     pr->pres -= ft_strlen(pr->s);
                     if(pr->pres != 0)
-                        while(pr->pres-- && pr->pres > -1000)
+                        while(pr->pres-- && pr->pres > 0)
                             ft_putchar('0');
                 }
 			}
@@ -55,9 +56,10 @@ void	make_width(t_par *pr, char spec)
         {
             if(pr->pres > ft_strlen(pr->s))
                  pr->pres -= ft_strlen(pr->s);
-            while(pr->pres-- && pr->pres > -1000)
+            while(pr->pres-- && pr->pres > 0)
                             ft_putchar('0');
         }
+        
 }
 
 void    parse_width(int *i, t_par *pr, const char *format)
