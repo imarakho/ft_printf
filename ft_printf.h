@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:23:09 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 15:38:33 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 15:54:09 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct      s_par
     int             res;
     unsigned int    pres;
     char            sz;
-    size_t          val;
+    intmax_t        val;
 }                   t_par;
 
 char	*ft_itoa_base(long value, int base);
