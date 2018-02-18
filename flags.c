@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 17:57:35 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 17:58:09 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,22 @@ void	make_width(t_par *pr, char spec)
                   //  if(pr->space > 0)
 				    while (pr->space-- && pr->space > -1)
                     {
-                 //   if (pr->nll && ! pr->minus)
-                  //      ft_putchar('0');
-                   // else
-					 //   ft_putchar(' ');
+                    if (pr->nll && ! pr->minus)
+                        ft_putchar('0');
+                    else
+					    ft_putchar(' ');
                     }
-                  //  while(pr->pres-- && pr->pres > -1)
-                   //     ft_putchar('0');
+                    while(pr->pres-- && pr->pres > -1)
+                        ft_putchar('0');
                 }
                 else if(pr->pres != 0)
                 {
                     while (pr->space-- && pr->space > -1)
                          ft_putchar(' ');
                     pr->pres -= ft_strlen(pr->s);
-                  //  if(pr->pres != 0)
-                     //   while(pr->pres-- && pr->pres > -1)
-                        //    ft_putchar('0');
+                    if(pr->pres != 0)
+                        while(pr->pres-- && pr->pres > -1)
+                            ft_putchar('0');
                 }
 			}
         else
