@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 15:29:04 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 15:49:59 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 15:55:26 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void    check_size(const char *format, t_par *pr, int *i)
 	}
 	else if (format[*i] == 'z')
 	{
-		pr->sz = 'j';
+		pr->sz = 'z';
 		*i += 1;
 	}
 }
