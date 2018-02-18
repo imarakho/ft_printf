@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:41:31 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/17 20:32:12 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 15:02:40 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_printf(const char * format, ... )
 		if (format[i] == '%')
 		{
 			i++;
-			check_size(format, &pr, &i);
+		//	check_size(format, &pr, &i);
 			check_flags(format, &i, &pr, &ap);
 		if ((format[i] == 'd' || 
 			format[i] == 'i' || format[i] == 'D'))
