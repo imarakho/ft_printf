@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 18:11:38 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 18:30:29 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void    start_flags(t_par *pr)
     pr->flag = 1;
     pr->pres = 0;
     pr->s = "";
-   // pr->sz = 0;
+    pr->sz = 0;
 }
 
 void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)
