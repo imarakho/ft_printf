@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 15:36:35 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 16:02:46 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void    check_char(t_par *pr, va_list *ap)
 {
-	pr->val = va_arg(*ap, int);
-	make_size(pr,'c');
+	//pr->val = va_arg(*ap, int);
+	//make_size(pr,'c');
+	if(!make_size(pr, 'c'))
+		pr->val = va_arg(*ap, int);
 	if (!pr->minus)
 	{
 		if (pr->space > ft_strlen(pr->s))
@@ -37,7 +39,7 @@ void    check_char(t_par *pr, va_list *ap)
 void    check_string(t_par *pr, va_list *ap)
 {
 	pr->s = va_arg(*ap, char *);
-	make_size(pr, 's');
+	//make_size(pr, 's');
 	if (!pr->minus)
 	{
 		if (pr->space > ft_strlen(pr->s))
