@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 15:29:04 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/17 17:41:41 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 15:21:49 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	make_size(t_par *pr)
 {
 	if (pr->sz == 'c')
 	{
-		pr->val = (char)pr->val;
+		pr->val = (unsigned char)pr->val;
 	}
 	else if (pr->sz == 'h')
 		pr->val = (short int)pr->val;
