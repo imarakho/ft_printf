@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 16:22:14 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 16:23:17 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void    check_char(t_par *pr, va_list *ap)
 {
-	pr->val = va_arg(*ap, intmax_t);
+	pr->val = va_arg(*ap, int);
 	make_size(pr,'c', ap);
-	//pr->s = ft_itoa_base(pr->uval, 16);
 	if (!pr->minus)
 	{
 		if (pr->space > ft_strlen(pr->s))
