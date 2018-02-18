@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:41:31 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 18:09:33 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 18:55:45 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int		ft_printf(const char * format, ... )
 			pr.res++;
 			//i++;
 			ft_putchar(format[i]);
-			continue ;
 		}
 		else if ((format[i] == 's'))
 			check_string(&pr, &ap);
@@ -55,12 +54,12 @@ int		ft_printf(const char * format, ... )
 		}
 		else if (format[i] == 'p')
 			check_pointer(&pr, &ap);
-		else if (format[i] == 'S')
+		/*else if (format[i] == 'S')
 		{
 			i++;
 			pr.s = va_arg(ap, char *);
 			write(1, pr.s, ft_strlen(pr.s));
-		}
+		}*/
 	}
 	else
 	{

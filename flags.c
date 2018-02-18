@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 18:30:29 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 18:56:18 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	make_width(t_par *pr, char spec)
 {
-    
  //   if(pr->space <= 0)
  //       return ;
 	if ((spec == 'd' && pr->plus && pr->space != 0) || spec == '%')
 		pr->space--;
    //  exit(1);
+   printf("space = %d\n", pr->space);
 	if (pr->space > 0)
 			{
 				if (spec == 'c')
@@ -37,7 +37,9 @@ void	make_width(t_par *pr, char spec)
                     if (pr->nll && ! pr->minus)
                         ft_putchar('0');
                     else
+                    {                   
 					    ft_putchar(' ');
+                    }
                     }
                     while(pr->pres-- && pr->pres > -1)
                         ft_putchar('0');
@@ -87,7 +89,7 @@ void    start_flags(t_par *pr)
     pr->flag = 1;
     pr->pres = 0;
     pr->s = "";
-    pr->sz = 0;
+   // pr->sz = 0;
 }
 
 void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)

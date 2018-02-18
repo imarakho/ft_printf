@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:23:09 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 18:28:39 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 19:01:27 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void    check_pointer(t_par *pr, va_list *ap);
 void	print_memory(const void *addr, size_t size);
 void    check_size(const char *format, t_par *pr, int *i);
 void	make_size(t_par *pr, char md, va_list *ap);
+void    start_flags(t_par *pr);
 
 /*for makefile
     $(NAME):
