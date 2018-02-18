@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:10:46 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 17:09:18 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 17:16:43 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,24 @@ char	*ft_itoa_base(intmax_t value, int base)
 	}
 	if (min)
 		num[0] = '-';
+	return (num);
+}
+
+char	*ft_unsitoa_base(uintmax_t value, int base)
+{
+	int		i;
+	char	*num;
+
+	i = 1;
+	while (ft_pow(base, i) - 1 < value)
+		i++;
+	num = (char*)malloc(sizeof(num) * i);
+	num[i] = '\0';
+	while (i-- > 0)
+	{
+		num[i] = (value % base) + (value % base > 9 ? 'A' - 10 : '0');
+		value = value / base;
+	}
 	return (num);
 }
 
