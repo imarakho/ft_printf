@@ -6,13 +6,13 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 15:29:04 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 16:03:57 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 16:10:59 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	make_size(t_par *pr, char md)
+void	make_size(t_par *pr, char md, va_list *ap)
 {
 	if (pr->sz == 'c')
 	{
