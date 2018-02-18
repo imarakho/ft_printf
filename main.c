@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:41:31 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 15:20:24 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 18:09:33 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_printf(const char * format, ... )
 
 	va_start(ap, format);
 	i = -1;
-	while (format[++i] != '\0' && i < 21454544)
+	while (format[++i] != '\0')
 	{	
 		if (format[i] == '%')
 		{
