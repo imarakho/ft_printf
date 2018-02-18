@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:23:09 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/17 19:12:01 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 15:20:16 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct      s_par
     int             res;
     unsigned int    pres;
     char            sz;
-    uintmax_t       val;
+    long long       val;
 }                   t_par;
 
 char	*ft_itoa_base(long value, int base);
@@ -69,7 +69,7 @@ void	make_size(t_par *pr);
 	ar	rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
-    @gcc $(FLAGS) $(OBJ) -o $(NAME)
+    @gcc $(FLAGS) $(OBJ) $(SRC) -o $(NAME)
 	@echo "Compilation done!"
 */
 
