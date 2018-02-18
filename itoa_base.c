@@ -6,13 +6,13 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:10:46 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 17:56:17 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 18:22:04 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long		ft_pow(long nb, long pow)
+long		ft_pow(uintmax_t nb, long pow)
 {
 	if (pow == 0)
 		return (1);
