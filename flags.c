@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 17:47:45 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 17:48:23 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	make_width(t_par *pr, char spec)
 {
-   /* 
+    
  //   if(pr->space <= 0)
  //       return ;
 	if ((spec == 'd' && pr->plus && pr->space != 0) || spec == '%')
@@ -59,7 +59,7 @@ void	make_width(t_par *pr, char spec)
             while(pr->pres-- && pr->pres > -1)
                             ft_putchar('0');
         }
-        */
+        
 }
 
 void    parse_width(int *i, t_par *pr, const char *format)
