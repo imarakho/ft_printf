@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:41:31 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 18:55:45 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 19:37:25 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ int		ft_printf(const char * format, ... )
 			check_octal(&pr, &ap);
 		else if (format[i] == '%')
 		{
+			//pr.res++;
 			make_width(&pr , '%');
-			pr.res++;
-			//i++;
 			ft_putchar(format[i]);
 		}
 		else if ((format[i] == 's'))

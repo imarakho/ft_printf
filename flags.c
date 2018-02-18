@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 18:56:18 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 19:42:13 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,16 @@
 
 void	make_width(t_par *pr, char spec)
 {
+    if (pr->space > 0 && pr->pres == 0)
+    {
+        if(pr->space > ft_strlen(pr->s))
+            pr->space -= ft_strlen(pr->s);
+        while(--pr->space && pr->space > 0)
+            ft_putchar(' ');
+    }
  //   if(pr->space <= 0)
  //       return ;
-	if ((spec == 'd' && pr->plus && pr->space != 0) || spec == '%')
+	/*if ((spec == 'd' && pr->plus && pr->space != 0) || spec == '%')
 		pr->space--;
    //  exit(1);
    printf("space = %d\n", pr->space);
@@ -60,7 +67,7 @@ void	make_width(t_par *pr, char spec)
                  pr->pres -= ft_strlen(pr->s);
             while(pr->pres-- && pr->pres > -1)
                             ft_putchar('0');
-        }
+        }*/
         
 }
 
@@ -73,7 +80,7 @@ void    parse_width(int *i, t_par *pr, const char *format)
 	//while (ft_isdigit(format[*i]))
 	{						
 		pr->space = ft_atoi(&format[*i]);
-        pr->res += ft_atoi(&format[*i]);					
+        pr->res += ft_atoi(&format[*i]);				
 		*i += ft_strlen(ft_itoa_base(pr->space, 10));
 	}
 	//*i -= 1;
@@ -104,8 +111,8 @@ void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)
         }
         if(format[*i] == ' ')
         {
-            pr->res++;
-            pr->space++;
+          //  pr->res++;
+          //  pr->space++;
             while (format[*i] == ' ')
             {
              //   printf("%d\n", pr->space);
@@ -152,7 +159,7 @@ void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)
             parse_width(i, pr, format);
          //   *i += 1;
         }
-        else
+        else 
             return ;
     }
     return ;

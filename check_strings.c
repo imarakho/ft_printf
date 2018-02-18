@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 18:01:33 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 19:25:41 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void    check_char(t_par *pr, va_list *ap)
 {
 	pr->uval = va_arg(*ap, int);
 	make_size(pr,'c', ap);
+	pr->res++;
 	if (!pr->minus)
 	{
 		if (pr->space > ft_strlen(pr->s))
@@ -37,6 +38,7 @@ void    check_char(t_par *pr, va_list *ap)
 void    check_string(t_par *pr, va_list *ap)
 {
 	pr->s = va_arg(*ap, char *);
+	pr->res += ft_strlen(pr->s);
 	make_size(pr, 's', ap);
 	if (!pr->minus)
 	{
@@ -56,6 +58,7 @@ void    check_pointer(t_par *pr, va_list *ap)
 {
 	pr->ptr = (uintmax_t)va_arg(*ap, void *);
 	pr->s = ft_unsitoa_base(pr->ptr, 16);
+	pr->res += ft_strlen(pr->s);
 	pr->d = -1;			
 		while(pr->s[++pr->d] != '\0')
 			pr->s[pr->d] = ft_tolower(pr->s[pr->d]);
