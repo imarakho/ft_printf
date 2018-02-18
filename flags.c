@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 17:57:01 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 17:57:35 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	make_width(t_par *pr, char spec)
                     {
                  //   if (pr->nll && ! pr->minus)
                   //      ft_putchar('0');
-                    else
-					    ft_putchar(' ');
+                   // else
+					 //   ft_putchar(' ');
                     }
                   //  while(pr->pres-- && pr->pres > -1)
                    //     ft_putchar('0');
