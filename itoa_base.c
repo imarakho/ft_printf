@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:10:46 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 16:45:50 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 16:47:14 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ long		ft_pow(long nb, long pow)
 		return (nb * ft_pow(nb, pow - 1));
 }
 
-char	*ft_itoa_base(uintmax_t value, int base)
+char	*ft_itoa_base(long value, int base)
 {
 	int		i;
 	char	*num;
