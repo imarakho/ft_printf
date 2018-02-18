@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 15:29:04 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 15:34:34 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 15:49:59 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	make_size(t_par *pr, char md)
 	else if (pr->sz == 'j')
 	{
 		if (md == 'd')
-			pr->val = (intmax_t)pr->val;
+			pr->val = (uintmax_t)pr->val;
 		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
 			pr->val = (uintmax_t)pr->val;
 	}
