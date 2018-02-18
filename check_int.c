@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 15:28:28 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 17:50:49 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 17:51:54 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void    check_uns_int(t_par *pr, va_list *ap)
 	//pr->uval = va_arg(*ap, unsigned int);
 	pr->uval = va_arg(*ap, uintmax_t);
 	make_size(pr, 'u', ap);
-	pr->s = ft_itoa_base(pr->uval, 10);
+	pr->s = ft_unsitoa_base(pr->uval, 10);
 	//pr->s = ft_itoa_base(va_arg(*ap, unsigned int), 10);
 	if (!pr->minus)
 	{
@@ -66,7 +66,7 @@ void    check_octal(t_par *pr, va_list *ap)
 	//pr->uval = va_arg(*ap, unsigned int);
 	pr->uval = va_arg(*ap, uintmax_t);
 	make_size(pr, 'o', ap);
-	pr->s = ft_itoa_base(pr->uval, 8);
+	pr->s = ft_unsitoa_base(pr->uval, 8);
 	//pr->s = ft_itoa_base(va_arg(*ap, unsigned int), 8);
 	if (!pr->minus)
 	{
@@ -95,7 +95,7 @@ void    check_hex(t_par *pr, va_list *ap)
 	//pr->uval = va_arg(*ap, unsigned int);
 	pr->uval = va_arg(*ap, uintmax_t);
 	make_size(pr, 'x', ap);
-	pr->s = ft_itoa_base(pr->uval, 16);
+	pr->s = ft_unsitoa_base(pr->uval, 16);
 	//pr->s = ft_itoa_base(va_arg(*ap, unsigned int), 16);
 	if (!pr->minus)
 	{
@@ -132,7 +132,7 @@ void    check_heX(t_par *pr, va_list *ap)
 	//pr->val = va_arg(*ap, intmax_t);
 	pr->uval = va_arg(*ap, uintmax_t);
 	make_size(pr, 'X', ap);
-	pr->s = ft_itoa_base(pr->uval, 16);
+	pr->s = ft_unsitoa_base(pr->uval, 16);
 	//pr->s = ft_itoa_base(va_arg(*ap, unsigned int), 16);
 	if (!pr->minus)
 	{
