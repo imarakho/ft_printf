@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 16:42:14 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 17:04:06 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void    check_char(t_par *pr, va_list *ap)
 {
-	pr->uval = va_arg(*ap, intmax_t);
+	pr->uval = va_arg(*ap, int);
 	make_size(pr,'c', ap);
 	if (!pr->minus)
 	{
