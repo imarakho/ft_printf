@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 15:29:04 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 16:10:59 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 16:20:08 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,39 +19,39 @@ void	make_size(t_par *pr, char md, va_list *ap)
 		if (md == 'd')
 			pr->val = (char)pr->val;
 		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
-			pr->val = (unsigned char)pr->val;
+			pr->uval = (unsigned char)pr->val;
 	}
 	else if (pr->sz == 'h')
 	{
 		if (md == 'd')
 			pr->val = (short)pr->val;
 		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
-			pr->val = (unsigned short)pr->val;
+			pr->uval = (unsigned short)pr->val;
 	}
 	else if (pr->sz == 'l')
 	{
 		if (md == 'd')
 			pr->val = (long)pr->val;
 		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
-			pr->val = (unsigned long)pr->val;
+			pr->uval = (unsigned long)pr->val;
 	}
 	else if (pr->sz == 'm')
 	{
 		if (md == 'd')
 			pr->val = (long long)pr->val;
 		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
-			pr->val = (unsigned long long)pr->val;
+			pr->uval = (unsigned long long)pr->val;
 	}
 	else if (pr->sz == 'j')
 	{
 		if (md == 'd')
 			pr->val = (uintmax_t)pr->val;
 		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
-			pr->val = (uintmax_t)pr->val;
+			pr->uval = (uintmax_t)pr->val;
 	}
 	else if (pr->sz == 'z')
 	{
-		pr->val = (size_t)pr->val;
+		pr->uval = (size_t)pr->val;
 	}
 		
 }
