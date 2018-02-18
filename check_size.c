@@ -6,28 +6,53 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 15:29:04 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 15:21:49 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 15:34:34 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	make_size(t_par *pr)
+void	make_size(t_par *pr, char md)
 {
 	if (pr->sz == 'c')
 	{
-		pr->val = (unsigned char)pr->val;
+		if (md == 'd')
+			pr->val = (char)pr->val;
+		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
+			pr->val = (unsigned char)pr->val;
 	}
 	else if (pr->sz == 'h')
-		pr->val = (short int)pr->val;
+	{
+		if (md == 'd')
+			pr->val = (short)pr->val;
+		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
+			pr->val = (unsigned short)pr->val;
+	}
 	else if (pr->sz == 'l')
-		pr->val = (long)pr->val;
+	{
+		if (md == 'd')
+			pr->val = (long)pr->val;
+		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
+			pr->val = (unsigned long)pr->val;
+	}
 	else if (pr->sz == 'm')
-		pr->val = (long long)pr->val;
+	{
+		if (md == 'd')
+			pr->val = (long long)pr->val;
+		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
+			pr->val = (unsigned long long)pr->val;
+	}
 	else if (pr->sz == 'j')
-		pr->val = (long)pr->val;
+	{
+		if (md == 'd')
+			pr->val = (intmax_t)pr->val;
+		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
+			pr->val = (uintmax_t)pr->val;
+	}
 	else if (pr->sz == 'z')
+	{
 		pr->val = (size_t)pr->val;
+	}
 		
 }
 

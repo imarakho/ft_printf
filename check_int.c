@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 15:28:28 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/17 19:15:49 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 15:37:07 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void    check_int(t_par *pr, va_list *ap)
 {
-  //  *i += 1;
 	pr->val = va_arg(*ap, int);
-	make_size(pr);
+	make_size(pr, 'd');
 	pr->s = ft_itoa_base(pr->val, 10);
 	if (!pr->minus)
 	{
@@ -41,7 +40,7 @@ void    check_uns_int(t_par *pr, va_list *ap)
 {
   //  *i += 1;
 	pr->val = va_arg(*ap, unsigned int);
-	make_size(pr);
+	make_size(pr, 'u');
 	pr->s = ft_itoa_base(pr->val, 10);
 	//pr->s = ft_itoa_base(va_arg(*ap, unsigned int), 10);
 	if (!pr->minus)
@@ -63,7 +62,7 @@ void    check_uns_int(t_par *pr, va_list *ap)
 void    check_octal(t_par *pr, va_list *ap)
 {
 	pr->val = va_arg(*ap, unsigned int);
-	make_size(pr);
+	make_size(pr, 'o');
 	pr->s = ft_itoa_base(pr->val, 8);
 	//pr->s = ft_itoa_base(va_arg(*ap, unsigned int), 8);
 	if (!pr->minus)
@@ -91,7 +90,7 @@ void    check_octal(t_par *pr, va_list *ap)
 void    check_hex(t_par *pr, va_list *ap)
 {
 	pr->val = va_arg(*ap, unsigned int);
-	make_size(pr);
+	make_size(pr, 'x');
 	pr->s = ft_itoa_base(pr->val, 16);
 	//pr->s = ft_itoa_base(va_arg(*ap, unsigned int), 16);
 	if (!pr->minus)
@@ -127,7 +126,7 @@ void    check_hex(t_par *pr, va_list *ap)
 void    check_heX(t_par *pr, va_list *ap)
 {
 	pr->val = va_arg(*ap, unsigned int);
-	make_size(pr);
+	make_size(pr, 'X');
 	pr->s = ft_itoa_base(pr->val, 16);
 	//pr->s = ft_itoa_base(va_arg(*ap, unsigned int), 16);
 	if (!pr->minus)
