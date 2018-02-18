@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:23:09 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 16:18:35 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 16:44:39 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct      s_par
     uintmax_t       uval;
 }                   t_par;
 
-char	*ft_itoa_base(long value, int base);
+char	*ft_itoa_base(intmax_t value, int base);
 char	*ft_itoa_baseptr(long value, int base);
 void	ft_putstr(char const *s);
 void	ft_putchar(char c);
