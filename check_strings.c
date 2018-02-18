@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 16:40:05 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 16:42:14 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void    check_char(t_par *pr, va_list *ap)
 {
-	pr->val = va_arg(*ap, intmax_t);
+	pr->uval = va_arg(*ap, intmax_t);
 	make_size(pr,'c', ap);
 	if (!pr->minus)
 	{
@@ -22,11 +22,11 @@ void    check_char(t_par *pr, va_list *ap)
 		{
 			make_width(pr , 'c');
 		}
-		ft_putchar(pr->val);
+		ft_putchar(pr->uval);
 	}
 	else
 	{
-        ft_putchar(pr->val);
+        ft_putchar(pr->uval);
 		if (pr->s != NULL && pr->space > ft_strlen(pr->s))
 		{
 			make_width(pr , 'c');
