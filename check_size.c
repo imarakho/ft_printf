@@ -6,16 +6,14 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 15:29:04 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 16:00:18 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 16:03:57 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-short	make_size(t_par *pr, char md)
+void	make_size(t_par *pr, char md)
 {
-	if(pr->sz == 0)
-		return 0;
 	if (pr->sz == 'c')
 	{
 		if (md == 'd')
@@ -55,7 +53,7 @@ short	make_size(t_par *pr, char md)
 	{
 		pr->val = (size_t)pr->val;
 	}
-	return (1);
+		
 }
 
 void    check_size(const char *format, t_par *pr, int *i)
