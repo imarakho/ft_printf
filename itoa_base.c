@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:10:46 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 17:16:43 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/18 17:40:13 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*ft_unsitoa_base(uintmax_t value, int base)
 	int		i;
 	char	*num;
 
-	i = 1;
+	i = 0;
 	while (ft_pow(base, i) - 1 < value)
 		i++;
 	num = (char*)malloc(sizeof(num) * i);
