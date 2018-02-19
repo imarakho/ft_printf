@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 19:42:13 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/19 14:37:45 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 void	make_width(t_par *pr, char spec)
 {
-    if (pr->space > 0 && pr->pres == 0)
+   if (pr->space > 0 && pr->pres == 1)
     {
+        printf("widht\n");
         if(pr->space > ft_strlen(pr->s))
             pr->space -= ft_strlen(pr->s);
-        while(--pr->space && pr->space > 0)
-            ft_putchar(' ');
+        if(pr->nll == 1)
+             while(--pr->space && pr->space > 0)
+                ft_putchar('0');
+        else
+            while(--pr->space && pr->space > 0)
+                ft_putchar(' ');
     }
  //   if(pr->space <= 0)
  //       return ;
@@ -67,14 +72,14 @@ void	make_width(t_par *pr, char spec)
                  pr->pres -= ft_strlen(pr->s);
             while(pr->pres-- && pr->pres > -1)
                             ft_putchar('0');
-        }*/
-        
+        }
+        */
 }
 
 void    parse_width(int *i, t_par *pr, const char *format)
 {
-    if (pr->plus)
-        pr->space = 0;
+   // if (pr->plus)
+      //  pr->space = 0;
     if(!ft_isdigit(format[*i]))
         return ;
 	//while (ft_isdigit(format[*i]))
@@ -94,7 +99,7 @@ void    start_flags(t_par *pr)
     pr->space = 0;
     pr->nll = 0;
     pr->flag = 1;
-    pr->pres = 0;
+    pr->pres = 1;
     pr->s = "";
    // pr->sz = 0;
 }
@@ -111,8 +116,8 @@ void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)
         }
         if(format[*i] == ' ')
         {
-          //  pr->res++;
-          //  pr->space++;
+           // pr->res++;
+           // pr->space++;
             while (format[*i] == ' ')
             {
              //   printf("%d\n", pr->space);
@@ -160,7 +165,7 @@ void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)
          //   *i += 1;
         }
         else 
-            return ;
+            pr->flag = 0 ;
     }
     return ;
    /* if (format[*i + 1] == '+')
