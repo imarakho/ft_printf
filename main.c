@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:41:31 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/19 13:55:21 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/20 18:11:59 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ int		ft_printf(const char * format, ... )
 		if (format[i] == '%')
 		{
 			i++;
-			check_size(format, &pr, &i);
 			check_flags(format, &i, &pr, &ap);
+			check_size(format, &pr, &i);
 		if ((format[i] == 'd' || 
 			format[i] == 'i' || format[i] == 'D'))
 			check_int(&pr, &ap);
-		else if ((format[i] == 'u' || format[i] == 'U'))
+		else if (format[i] == 'u')
 			check_uns_int(&pr, &ap);
+		else if (format[i] == 'U')
+			check_uns_long(&pr, &ap);	
 		else if (format[i] == 'x')
 			check_hex(&pr, &ap);
 		else if (format[i] == 'X')
@@ -41,7 +43,8 @@ int		ft_printf(const char * format, ... )
 			check_octal(&pr, &ap);
 		else if (format[i] == '%')
 		{
-			pr.res++;
+			if(pr.res == 0)
+				pr.res++;
 				if (!pr.minus)
 				{
 					make_width(&pr , '%');
@@ -82,8 +85,8 @@ int		ft_printf(const char * format, ... )
 /*
 int     main()
 {
-	//long int d1=123;
-	printf ("%hhc\n", 126);
-	ft_printf("%hhc\n", 126);
+	printf("%5.2x\n", 5427);
+	ft_printf("%5.2x\n", 5427);
 	return (0);
-}*/
+}
+*/

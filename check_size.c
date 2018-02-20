@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 15:29:04 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 18:15:44 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/20 19:20:13 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	make_size(t_par *pr, char md, va_list *ap)
 			pr->val = (int)pr->val;
 		else if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
 			pr->uval = (unsigned int)pr->uval;
+		else if (md == 'U')
+			pr->uval = (unsigned long)pr->uval;
 	}
 	if (pr->sz == 'c')
 	{

@@ -9,6 +9,10 @@ SRC = main.c \
 	ft_atoi.c \
 	ft_isdigit.c \
 	ft_tolower.c \
+	ft_strcmp.c \
+	ft_strcat.c \
+	ft_strdup.c \
+	ft_memcpy.c \
 	flags.c \
 	check_int.c \
 	check_strings.c \
@@ -25,7 +29,6 @@ $(NAME):
 	gcc -c $(FLAGS) $(SRC) -I ft_printf.h
 	ar	rc $(NAME) $(OBJ)
 	ranlib $(NAME)
-
 lldb:
 	@gcc -c $(FLAGS) $(OBJ) -o $(NAME) -I ft_printf.h
 	@echo "Use 'debug' for lldb."

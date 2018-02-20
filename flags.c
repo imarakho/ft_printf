@@ -6,89 +6,84 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/19 14:37:45 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/20 20:11:11 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+char* concat(char *s1, char *s2) {
+
+        size_t len1 = ft_strlen(s1);
+        size_t len2 = ft_strlen(s2);                      
+        char *result;
+        
+        result = (char *)malloc(len1 + len2 + 1);
+        ft_memcpy(result, s1, len1);
+        ft_memcpy(result + len1, s2, len2 + 1);    
+
+        return result;
+    }
+
+void    make_pres(t_par *pr, char spec)
+{
+    if (pr->pres > 1)
+    {
+        if (pr->pres >= ft_strlen(pr->s))
+            pr->pres -= ft_strlen(pr->s);
+        pr->res += pr->pres;
+         while (pr->pres > 0 && pr->pres--)
+                ft_putchar('0');
+    }
+}
+
 void	make_width(t_par *pr, char spec)
 {
-   if (pr->space > 0 && pr->pres == 1)
+    if (!pr->wdth || pr->space < ft_strlen(pr->s))
+        return ;
+    if (pr->space < ft_strlen(pr->s))
     {
-        printf("widht\n");
-        if(pr->space > ft_strlen(pr->s))
+        pr->res -= pr->space;
+        return ;
+    }
+    if (pr->space >= pr->pres && pr->pres >= 1)
+    {
+        if(spec == 'c')
+        {
+            pr->res++;
+            pr->space--;
+        }
+        else if (pr->space >= ft_strlen(pr->s))
+        {
             pr->space -= ft_strlen(pr->s);
-        if(pr->nll == 1)
-             while(--pr->space && pr->space > 0)
+           // pr->res -= ft_strlen(pr->s);
+        }
+        if (spec == '%')
+        pr->space--;
+        if (pr->nll && !pr->minus)
+            while (pr->space > 0 && pr->space--)
                 ft_putchar('0');
         else
-            while(--pr->space && pr->space > 0)
+            while (pr->space > 0 && pr->space--)
                 ft_putchar(' ');
     }
- //   if(pr->space <= 0)
- //       return ;
-	/*if ((spec == 'd' && pr->plus && pr->space != 0) || spec == '%')
-		pr->space--;
-   //  exit(1);
-   printf("space = %d\n", pr->space);
-	if (pr->space > 0)
-			{
-				if (spec == 'c')
-					pr->space -= 1;
-				if(pr->space > ft_strlen(pr->s))
-					pr->space -= ft_strlen(pr->s);
-                if(pr->space > pr->pres)
-                {
-                    pr->space -= pr->pres;
-                    if(pr->pres > 0 && ft_strlen(pr->s) < pr->pres)
-                        pr->pres -= ft_strlen(pr->s);
-                  //  if(pr->space > 0)
-				    while (pr->space-- && pr->space > -1)
-                    {
-                    if (pr->nll && ! pr->minus)
-                        ft_putchar('0');
-                    else
-                    {                   
-					    ft_putchar(' ');
-                    }
-                    }
-                    while(pr->pres-- && pr->pres > -1)
-                        ft_putchar('0');
-                }
-                else if(pr->pres != 0)
-                {
-                    while (pr->space-- && pr->space > -1)
-                         ft_putchar(' ');
-                    pr->pres -= ft_strlen(pr->s);
-                    if(pr->pres != 0)
-                        while(pr->pres-- && pr->pres > -1)
-                            ft_putchar('0');
-                }
-			}
-        else
-        {
-            if(pr->pres > ft_strlen(pr->s))
-                 pr->pres -= ft_strlen(pr->s);
-            while(pr->pres-- && pr->pres > -1)
-                            ft_putchar('0');
-        }
-        */
+     return ;
 }
 
 void    parse_width(int *i, t_par *pr, const char *format)
 {
    // if (pr->plus)
       //  pr->space = 0;
+    pr->wdth = 1;
     if(!ft_isdigit(format[*i]))
         return ;
 	//while (ft_isdigit(format[*i]))
 	{						
 		pr->space = ft_atoi(&format[*i]);
-        pr->res += ft_atoi(&format[*i]);				
+        if (pr->res < pr->space)
+            pr->res += pr->space;				
 		*i += ft_strlen(ft_itoa_base(pr->space, 10));
 	}
-	//*i -= 1;
 }
 
 void    start_flags(t_par *pr)
@@ -98,10 +93,19 @@ void    start_flags(t_par *pr)
     pr->plus = 0;
     pr->space = 0;
     pr->nll = 0;
+    pr->wdth = 0;
     pr->flag = 1;
     pr->pres = 1;
     pr->s = "";
-   // pr->sz = 0;
+   pr->sz = 0;
+}
+
+void    make_res(t_par *pr)
+{
+    if(pr->pres >= pr->space)
+        pr->res += pr->pres;
+    else
+        pr->res += pr->space;
 }
 
 void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)
@@ -114,7 +118,7 @@ void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)
             pr->plus = 1;
             *i += 1;
         }
-        if(format[*i] == ' ')
+        else if(format[*i] == ' ')
         {
            // pr->res++;
            // pr->space++;
@@ -124,30 +128,32 @@ void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)
                 *i += 1;
             }
         }
-        if(format[*i] == '-')
+        else if(format[*i] == '-')
         {
             pr->minus = 1;
             *i += 1;
         }
-        if(format[*i] == '#')
+        else if(format[*i] == '#')
         {
             pr->alter= 1;
             *i += 1;
         }
-        if (format[*i] == '0')
+        else if (format[*i] == '0')
         {
             pr->nll = 1;
             *i += 1;
         }
-        if (format[*i] == '.')
+        else if (format[*i] == '.')
         {
             *i += 1;
 
                     if(ft_isdigit(format[*i]))
-                    {						
+                    {		
+                        //pr->wdth = 1;				
 		                pr->pres = ft_atoi(&format[*i]);
                        // exit (1);
-                        pr->res += ft_atoi(&format[*i]);					
+                      // if (pr->res < pr->pres)
+                      //  pr->res += pr->pres;					
 		                *i += ft_strlen(ft_itoa_base(pr->pres, 10));
 	                }
                     else if (format[*i] == '*')
@@ -157,9 +163,11 @@ void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)
                         pr->pres = va_arg(*ap, int);
                         *i += 1;
                     }
+                    else
+                        pr->pres = 0;
 
         }
-        if(ft_isdigit(format[*i]) && format[*i] != '0')
+        else if(ft_isdigit(format[*i]) && format[*i] != '0')
         { 
             parse_width(i, pr, format);
          //   *i += 1;
@@ -167,6 +175,7 @@ void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)
         else 
             pr->flag = 0 ;
     }
+    //make_res(pr);
     return ;
    /* if (format[*i + 1] == '+')
 				{
