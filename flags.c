@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/23 18:46:46 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/23 18:49:11 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void    parse_width(int *i, t_par *pr, const char *format)
         return ;					
 		pr->space = ft_atoi(&format[*i]);
         if (pr->res < pr->space)
-            pr->res += pr->space;				
+            pr->res += pr->space;
+        if (*i + ft_strlen(ft_itoa_base(pr->space, 10)) < ft_strlen(format))
 		*i += ft_strlen(ft_itoa_base(pr->space, 10));
 }
 
