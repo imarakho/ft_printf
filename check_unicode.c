@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:41 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/23 16:33:41 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:00:05 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void    check_symbol(t_par *pr, va_list *ap, char md)
 {
         if(md == 'C')
         {
-                pr->uval = va_arg(*ap, wchar_t);
+                pr->uval = va_arg(*ap, unsigned int);
                 make_size(pr, 'C', ap);
         }
         else
@@ -39,24 +39,25 @@ void    check_symbol(t_par *pr, va_list *ap, char md)
         size = ft_strlen(ft_unsitoa_base(*pr->unval, 2));
         pr->s = ft_unsitoa_base(*pr->unval, 2);
         }
-        //printf("size:%d\n", size);
-          pr->d = -1;
+         /* pr->d = -1;
         while (pr->s[++pr->d] != '\0')
                 if (pr->s[pr->d] == ' ')
                         size--;
-        pr->d = 0;
-        unsigned char octet;
-        printf("size:%d\n", size);
+        pr->d = 0;*/
+        unsigned int octet;
         if (size <= 7)
         {
-                octet = pr->uval;
+                if (md == 'C')
+                        octet = pr->uval;
+                else
+                        octet = *pr->unval;
                 write(1, &octet, 1);
                 pr->res++;
         }
         else  if (size <= 11)
         {
-                unsigned char o2 = (v << 26) >> 26; 
-                unsigned char o1 = ((v >> 6) << 27) >> 27; 
+                unsigned int o2 = (v << 26) >> 26; 
+                unsigned int o1 = ((v >> 6) << 27) >> 27; 
        
                 octet = (mask1 >> 8) | o1; 
                 write(1, &octet, 1);
@@ -67,9 +68,9 @@ void    check_symbol(t_par *pr, va_list *ap, char md)
         }
         else  if (size <= 16)
         {
-                unsigned char o3 = (v << 26) >> 26; 
-                unsigned char o2 = ((v >> 6) << 26) >> 26;
-                unsigned char o1 = ((v >> 12) << 28) >> 28;
+                unsigned int o3 = (v << 26) >> 26; 
+                unsigned int o2 = ((v >> 6) << 26) >> 26;
+                unsigned int o1 = ((v >> 12) << 28) >> 28;
        
                 octet = (mask2 >> 16) | o1; 
                 write(1, &octet, 1);
@@ -81,10 +82,10 @@ void    check_symbol(t_par *pr, va_list *ap, char md)
         }
         else
         {
-                unsigned char o4 = (v << 26) >> 26; 
-                unsigned char o3 = ((v >> 6) << 26) >> 26;
-                unsigned char o2 = ((v >> 12) << 26) >> 26; 
-                unsigned char o1 = ((v >> 18) << 29) >> 29; 
+                unsigned int o4 = (v << 26) >> 26; 
+                unsigned int o3 = ((v >> 6) << 26) >> 26;
+                unsigned int o2 = ((v >> 12) << 26) >> 26; 
+                unsigned int o1 = ((v >> 18) << 29) >> 29; 
        
                 octet = (mask3 >> 24) | o1; 
                 write(1, &octet, 1);
