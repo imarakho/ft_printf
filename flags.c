@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/23 18:49:11 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/23 18:51:08 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void    parse_width(int *i, t_par *pr, const char *format)
 		pr->space = ft_atoi(&format[*i]);
         if (pr->res < pr->space)
             pr->res += pr->space;
-        if (*i + ft_strlen(ft_itoa_base(pr->space, 10)) < ft_strlen(format))
 		*i += ft_strlen(ft_itoa_base(pr->space, 10));
 }
 
@@ -149,10 +148,10 @@ void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)
         }
         else if (format[*i] == '*')
                     {
-                    //    while (format[*i] != '*')
-                     //       *i += 1;
                         pr->space = va_arg(*ap, int);
-                        parse_width(i, pr, format);
+                        if (pr->res < pr->space)
+            pr->res += pr->space;
+		*i += ft_strlen(ft_itoa_base(pr->space, 10));
                     }
         else if (format[*i] == '.')
         {
