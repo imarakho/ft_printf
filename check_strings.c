@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/23 19:04:07 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/23 19:05:08 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void    check_string(t_par *pr, va_list *ap)
 	}
 	if (pr->pres > 1 && ft_strcmp(pr->s, "") && pr->minus && pr->space > 0)
 	{
-		pr->space -= pr->pres;
-		pr->space += ft_strlen(pr->s);
+		pr->space -= ft_strlen(pr->s);
+		pr->space += pr->pres;
 	}
 	pr->res += ft_strlen(pr->s);
 	make_size(pr, 's', ap);
