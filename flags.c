@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/23 18:30:04 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/23 18:44:10 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,13 @@ void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)
             pr->nll = 1;
             *i += 1;
         }
+        else if (format[*i] == '*')
+                    {
+                    //    while (format[*i] != '*')
+                     //       *i += 1;
+                        pr->space = va_arg(*ap, int);
+                        *i += 1;
+                    }
         else if (format[*i] == '.')
         {
             *i += 1;
