@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 15:28:28 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/22 22:00:10 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/23 18:35:01 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,19 +153,6 @@ void    check_uns_long(t_par *pr, va_list *ap)
 	}
 }
 
-void	make_prefix(t_par *pr)
-{
-	if (pr->alter && ft_strcmp(pr->s, "0"))
-		{
-				if(pr->res < ft_strlen(pr->s))
-				{
-					pr->res += 2;
-					pr->space -= 2;
-				}
-			ft_putstr("0x");
-		}
-}
-
 void    check_octal(t_par *pr,char sz, va_list *ap)
 {
 	pr->uval = va_arg(*ap, uintmax_t);
@@ -193,7 +180,7 @@ void    check_octal(t_par *pr,char sz, va_list *ap)
 		if(pr->space)
 			pr->res +=  pr->pres;
 	}
-	else if (pr->pres == 0 && pr->uval != 0)
+	if (pr->pres == 0 && pr->uval != 0)
 		pr->res++;
 	if (pr->alter)
 		{
