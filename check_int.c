@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 15:28:28 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/23 18:38:05 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/23 18:42:28 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ void    check_octal(t_par *pr,char sz, va_list *ap)
 		free(pr->s);
 		pr->s = "";
 	}
-	else if (pr->pres > 1 && pr->pres > pr->space)
+	else if (pr->pres >= 1 && pr->pres > pr->space)
 	{
 
 		pr->res -= pr->space;
@@ -182,7 +182,7 @@ void    check_octal(t_par *pr,char sz, va_list *ap)
 	}
 	if (pr->pres == 0 && pr->uval != 0)
 		pr->res++;
-	if (pr->alter)
+	if ((pr->alter && pr->uval != 0) || (pr->alter && pr->uval == 0 && pr->pres == 0))
 		{
 			pr->s = concat("0", pr->s);
 		}
