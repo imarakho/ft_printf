@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:41 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/23 15:41:59 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/23 16:32:54 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void    check_symbol(t_par *pr, va_list *ap, char md)
         size = ft_strlen(ft_unsitoa_base(*pr->unval, 2));
         pr->s = ft_unsitoa_base(*pr->unval, 2);
         }
+        printf("size:%d\n", size);
           pr->d = -1;
         while (pr->s[++pr->d] != '\0')
                 if (pr->s[pr->d] == ' ')
