@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 15:29:04 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/20 19:20:13 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/23 16:22:31 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,47 +20,51 @@ void	make_size(t_par *pr, char md, va_list *ap)
 			pr->val = (int)pr->val;
 		else if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
 			pr->uval = (unsigned int)pr->uval;
-		else if (md == 'U')
+		else if (md == 'U' || md == 'O' || md == 'D' /*|| md == 'C' || md == 'S'*/)
 			pr->uval = (unsigned long)pr->uval;
+
 	}
 	if (pr->sz == 'c')
 	{
-		if (md == 'd')
+		if (md == 'c' || md == 'd')
 			pr->val = (char)pr->val;
-		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
+		else if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
 			pr->uval = (unsigned char)pr->uval;
 	}
 	else if (pr->sz == 'h')
 	{
-		if (md == 'd')
+		if (md == 'c' || md == 'd')
 			pr->val = (short)pr->val;
 		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
 			pr->uval = (unsigned short)pr->uval;
 	}
 	else if (pr->sz == 'l')
 	{
-		if (md == 'd')
+		if (md == 'c' || md == 'd')
 			pr->val = (long)pr->val;
-		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
+		else if ((md == 'o' || md == 'x' || md == 'X' || md == 'u' || md == 'U'))
 			pr->uval = (unsigned long)pr->uval;
 	}
 	else if (pr->sz == 'm')
 	{
-		if (md == 'd')
+		if (md == 'c' || md == 'd')
 			pr->val = (long long)pr->val;
-		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
+		else if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
 			pr->uval = (unsigned long long)pr->uval;
 	}
 	else if (pr->sz == 'j')
 	{
-		if (md == 'd')
+		if (md == 'c' || md == 'd')
 			pr->val = (intmax_t)pr->val;
-		if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
-			pr->uval = (uintmax_t)pr->uval;
+		else if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
+			pr->uval = (unsigned long long)pr->uval;
 	}
 	else if (pr->sz == 'z')
 	{
-		pr->uval = (size_t)pr->uval;
+		if (md == 'c' || md == 'd')
+			pr->val = (size_t)pr->val;
+		else
+			pr->uval = (size_t)pr->uval;
 	}
 		
 }

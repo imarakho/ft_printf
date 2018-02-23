@@ -17,7 +17,8 @@ SRC = main.c \
 	check_int.c \
 	check_strings.c \
 	print_memory.c \
-	check_size.c
+	check_size.c \
+	check_unicode.c
 
 FLAGS = -Wall
 

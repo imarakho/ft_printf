@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 17:10:46 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/18 18:28:20 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/22 19:29:51 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char		*ft_itoa_base(long long int value, int base)
 	return (str);
 }
 
-char		*ft_unsitoa_base(unsigned long int value,  int base)
+char		*ft_unsitoa_base(unsigned long long int value,  int base)
 {
 	unsigned long long int	n;
 	int				sign;
