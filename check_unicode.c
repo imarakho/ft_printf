@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:41 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/23 17:00:05 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:03:10 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void    check_symbol(t_par *pr, va_list *ap, char md)
                         size--;
         pr->d = 0;*/
         unsigned int octet;
-        if (size <= 7)
+        if (u <= 0x007F)
         {
                 if (md == 'C')
                         octet = pr->uval;
@@ -54,7 +54,7 @@ void    check_symbol(t_par *pr, va_list *ap, char md)
                 write(1, &octet, 1);
                 pr->res++;
         }
-        else  if (size <= 11)
+        else  if (pr->uval <= 0x07FF)
         {
                 unsigned int o2 = (v << 26) >> 26; 
                 unsigned int o1 = ((v >> 6) << 27) >> 27; 
@@ -66,7 +66,7 @@ void    check_symbol(t_par *pr, va_list *ap, char md)
                 pr->res += 2;
 
         }
-        else  if (size <= 16)
+        else  if (u <= 0x07FFF)
         {
                 unsigned int o3 = (v << 26) >> 26; 
                 unsigned int o2 = ((v >> 6) << 26) >> 26;
