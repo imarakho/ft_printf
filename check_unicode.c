@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:41 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/23 17:13:31 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/23 17:41:41 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void    check_symbol(t_par *pr, va_list *ap, char md)
         }
         else
              make_size(pr, 'S', ap);   
-        unsigned int mask0 = 0xF0;
-        unsigned int mask1 =  0x80;
-        unsigned int mask2=  0x80;
-        unsigned int mask3=  0x80;
+        unsigned int mask0 = 0;
+        unsigned int mask1 = 49280;
+        unsigned int mask2= 14712960;
+        unsigned int mask3= 4034953344;
          unsigned int v = 0;
          int size = 0;
         if (md == 'C')
@@ -45,7 +45,7 @@ void    check_symbol(t_par *pr, va_list *ap, char md)
                         size--;
         pr->d = 0;*/
         unsigned int octet;
-        if (pr->uval <= 0x007F)
+        if (size <= 7)
         {
                 if (md == 'C')
                         octet = pr->uval;
@@ -54,44 +54,46 @@ void    check_symbol(t_par *pr, va_list *ap, char md)
                 write(1, &octet, 1);
                 pr->res++;
         }
-        else  if (pr->uval <= 0x07FF)
+        else  if (size <= 11)
         {
-                unsigned int cl =  pr->uval & 0x7000; 
+                unsigned int o2 = (v << 26) >> 26; 
+                unsigned int o1 = ((v >> 6) << 27) >> 27; 
        
-                octet = mask0 | (cl >> 18); 
+                octet = (mask1 >> 8) | o1; 
                 write(1, &octet, 1);
-                cl =  v & 0x03F000; 
-                octet = mask1 | (cl >> 12);
+                octet = ((mask1 << 24) >> 24) | o2; 
                 write(1, &octet, 1);
                 pr->res += 2;
 
         }
-        else  if (pr->uval <= 0x07FFF)
+        else  if (size <= 16)
         {
-               unsigned int cl =  pr->uval & 0x7000; 
+                unsigned int o3 = (v << 26) >> 26; 
+                unsigned int o2 = ((v >> 6) << 26) >> 26;
+                unsigned int o1 = ((v >> 12) << 28) >> 28;
        
-                octet = mask0 | (cl >> 18); 
+                octet = (mask2 >> 16) | o1; 
                 write(1, &octet, 1);
-                cl =  v & 0x03F000; 
-                octet = mask1 | (cl >> 12);
+                octet = ((mask2 << 16) >> 24) | o2; 
                 write(1, &octet, 1);
-                cl = v & 0xFC0;
-                octet = mask2 | (cl >> 6); 
+                octet = ((mask2 << 24) >> 24) | o3; 
                 write(1, &octet, 1);
+                pr->res += 3;
         }
         else
         {
-                unsigned int cl =  pr->uval & 0x7000; 
+                unsigned int o4 = (v << 26) >> 26; 
+                unsigned int o3 = ((v >> 6) << 26) >> 26;
+                unsigned int o2 = ((v >> 12) << 26) >> 26; 
+                unsigned int o1 = ((v >> 18) << 29) >> 29; 
        
-                octet = mask0 | (cl >> 18); 
+                octet = (mask3 >> 24) | o1; 
                 write(1, &octet, 1);
-                cl =  v & 0x03F000; 
-                octet = mask1 | (cl >> 12);
+                octet = ((mask3 << 8) >> 24) | o2;
                 write(1, &octet, 1);
-                cl = v & 0xFC0;
-                octet = mask2 | (cl >> 6); 
+                octet = ((mask3 << 16) >> 24) | o3; 
                 write(1, &octet, 1);
-                octet = mask3 | (v & 0x003F); 
+                octet = ((mask3 << 24) >> 24) | o4; 
                 write(1, &octet, 1);
                 pr->res += 4;
         }
