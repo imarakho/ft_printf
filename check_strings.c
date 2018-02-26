@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/23 19:59:51 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/26 14:19:01 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,13 @@ void    check_string(t_par *pr, va_list *ap)
             }
 		if(pr->pres > 1 && pr->pres < ft_strlen(pr->s))
 		{
-			pr->d = -1;
+			pr->d = pr->pres;
 			pr->res += pr->pres;
 			pr->res -= ft_strlen(pr->s);
-			pr->pres++;
-			while(pr->pres-- && pr->pres > 0)
-				ft_putchar(pr->s[++pr->d]);
+			pr->d++;
+			int i = 0;
+			while(pr->d-- && pr->d > 0)
+				ft_putchar(pr->s[i++]);
 			pr->d = 0;
 		}
 		else
