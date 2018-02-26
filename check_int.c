@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 15:28:28 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/26 14:48:03 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/26 14:51:15 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void    check_int(t_par *pr, va_list *ap, char sz)
 	}
 	if (!pr->minus)
 	{
-		if(pr->space > pr->pres && pr->pres > 1)
+		if(pr->space > pr->pres && pr->pres > 1 && pr->pres >= ft_strlen(pr->s))
 		{
 			pr->space--;
 			pr->res--;
