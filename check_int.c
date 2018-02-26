@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 15:28:28 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/26 14:16:30 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/26 14:48:03 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void    check_int(t_par *pr, va_list *ap, char sz)
 	pr->s = ft_itoa_base(pr->val, 10);
 	if (pr->space < ft_strlen(pr->s))
 		pr->res += ft_strlen(pr->s);
-	if(pr->md_sp && !pr->space 
-	&& pr->pres == 1 && pr->val > 0 && !pr->plus)
+	if(pr->md_sp && pr->space < pr->pres &&
+	 pr->val > 0 && !pr->plus)
 	{
 		pr->res++;
 		ft_putchar(' ');
-		ft_putstr(pr->s);
-		return ;
+		//ft_putstr(pr->s);
+		//return ;
 	}
 	if (pr->space < pr->pres)
 		pr->wdth = 0;
