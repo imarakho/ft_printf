@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/23 19:58:03 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/23 19:59:11 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	make_width(t_par *pr, char spec)
         if(spec == 'c')
             pr->space--;
             pr->space -= ft_strlen(pr->s);
-            if(pr->space == 1 && spec == 's')
-                pr->space++;
+           // if(pr->space == 1 && spec == 's')
+           //     pr->space++; its for site tests
             if(pr->pres > 1 && spec == 's' && ft_strcmp(pr->s, ""))
             {
                 pr->space += pr->pres;

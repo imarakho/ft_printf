@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/23 19:58:09 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/23 19:59:51 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void    check_string(t_par *pr, va_list *ap)
 	}
 	else
 	{
-		 if(pr->pres > 1 && ft_strcmp(pr->s, "") && pr->space && pr->space < pr->pres)
+		 if(pr->pres > 1 && ft_strcmp(pr->s, "") && pr->space /*&& pr->space < pr->pres for site*/)
             {
                 pr->space += pr->pres;
                 pr->res += pr->pres;
