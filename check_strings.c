@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/26 14:19:01 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/26 14:33:29 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,10 @@ void    check_string(t_par *pr, va_list *ap)
 			pr->d++;
 			int i = 0;
 			while(pr->d-- && pr->d > 0)
+			{
 				ft_putchar(pr->s[i++]);
+				pr->space--;
+			}
 			pr->d = 0;
 		}
 		else
