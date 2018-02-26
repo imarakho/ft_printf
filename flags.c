@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/26 15:53:39 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/26 15:54:59 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	make_width(t_par *pr, char spec)
         if (spec == '%')
         pr->space--;
         //printf("space:%d\n", pr->space);
-        if(pr->space == 1 && spec == 'd' && pr->pres > 1)
+        //if(pr->space == 1 && spec == 'd' && pr->pres > 1)
                 pr->space++; //its for site tests
            // if (pr->nll || (pr->pres < ft_strlen(pr->s) && pr->pres > 1))
         if (pr->nll && !pr->minus && pr->pres <= 1)
