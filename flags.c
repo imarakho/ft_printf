@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/26 15:56:59 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/26 15:59:13 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char* concat(char *s1, char *s2) {
 
 void    make_pres(t_par *pr, char spec)
 {
-    if (pr->pres < ft_strlen(pr->s))
+    if (pr->pres <= ft_strlen(pr->s))
         return ;
     if (pr->pres > 1)
     {
