@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/26 15:59:13 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/28 16:58:39 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,17 @@ char* concat(char *s1, char *s2) {
 void    make_pres(t_par *pr, char spec)
 {
     if (pr->pres <= ft_strlen(pr->s))
+    {
+        if(pr->res < ft_strlen(pr->s))
+            pr->res = ft_strlen(pr->s);
         return ;
+    }
     if (pr->pres > 1)
     {
         if (pr->pres >= ft_strlen(pr->s))
         {
             pr->pres -= ft_strlen(pr->s);
-            if(pr->space <= 0)
+           // if(pr->space <= 0)
             {
                 pr->res += pr->pres;
             }
@@ -45,41 +49,44 @@ void    make_pres(t_par *pr, char spec)
 }
 
 void	make_width(t_par *pr, char spec)
-{
+{ 
     if (!pr->wdth)
         return ;
-    if (pr->space < ft_strlen(pr->s))
+    if (pr->space < ft_strlen(pr->s) && spec != 's')
     {
         pr->res -= pr->space;
         return ;
     }
-   else if (spec == 's' && pr->space > ft_strlen(pr->s))
-        pr->res -= ft_strlen(pr->s);
-        if(spec == 'c')
-            pr->space--;
-            pr->space -= ft_strlen(pr->s);
-            if(pr->pres > 1 && spec == 's' && ft_strcmp(pr->s, "") && !pr->minus)
+   //else if (spec == 's' && pr->space > ft_strlen(pr->s))
+    //    pr->res -= ft_strlen(pr->s);
+            if(pr->pres > ft_strlen(pr->s))
+            {
+                if(spec != 's')
+                pr->space -= pr->pres;
+                else
+                    pr->space -= ft_strlen(pr->s);
+                pr->res -= ft_strlen(pr->s);
+            }
+            else if (spec != 's')
+                pr->space -= ft_strlen(pr->s);
+            else if (pr->pres > 1 && pr->pres < ft_strlen(pr->s))
+                pr->space -= pr->pres;
+          /*  if(pr->pres > 1 && spec == 's' && ft_strcmp(pr->s, "") && !pr->minus)
             {
                 pr->space += pr->pres;
                 pr->res += pr->pres;
-            }
-           /* else if (pr->pres > 1 && spec == 's' && ft_strcmp(pr->s, "") && pr->minus)
-            {
-                pr->space -= pr
-            }*/
-       // printf("space:%d\n", pr->space);
+     printf("%d\n", pr->space);        }*/
+           
         if (spec == '%')
-        pr->space--;
-        //printf("space:%d\n", pr->space);
-        //if(pr->space == 1 && spec == 'd' && pr->pres > 1)
-         //       pr->space++; //its for site tests
-           // if (pr->nll || (pr->pres < ft_strlen(pr->s) && pr->pres > 1))
+            pr->space--;
         if (pr->nll && !pr->minus && pr->pres <= 1)
             while (pr->space > 0 && pr->space--)
                 ft_putchar('0');
         else
             while (pr->space > 0 && pr->space--)
             {
+                if(pr->pres == 0 && pr->val == 0 && spec == 'd')
+                    pr->res++;
                 ft_putchar(' ');
             }
      return ;
@@ -88,6 +95,8 @@ void	make_width(t_par *pr, char spec)
 void    parse_width(int *i, t_par *pr, const char *format)
 {
     pr->wdth = 1;
+    // printf("form%c\n", format[*i]);
+       //  printf("space:%d\n", pr->space);
     if(!ft_isdigit(format[*i]) || format[*i + 1] == '\0')
         return ;					
 		pr->space = ft_atoi(&format[*i]);
@@ -108,7 +117,7 @@ void    start_flags(t_par *pr)
     pr->pres = 1;
     pr->md_sp = 0;
     pr->s = "";
-   pr->sz = 0;
+    pr->sz = 0;
 }
 
 void    make_res(t_par *pr)

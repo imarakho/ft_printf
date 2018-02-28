@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/26 14:41:47 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:07:14 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ void    check_char(t_par *pr, va_list *ap, char sz)
 	pr->uval = va_arg(*ap, int);
 	make_size(pr, sz, ap);
 	if (pr->space < ft_strlen(pr->s))
-		pr->res += ft_strlen(pr->s)  - pr->space;
+		pr->res += ft_strlen(pr->s);
 	else if (!pr->wdth)
 		pr->res++;
+	if(pr->space > 1 && pr->nll && pr->uval == 0)
+		pr->space--;
 	if (!pr->minus)
 	{
-		if (pr->space > ft_strlen(pr->s))
+		//if (pr->space > ft_strlen(pr->s))
 		{
 			make_width(pr , 'c');
 		}
@@ -31,7 +33,7 @@ void    check_char(t_par *pr, va_list *ap, char sz)
 	else
 	{
         ft_putchar(pr->uval);
-		if (pr->s != NULL && pr->space > ft_strlen(pr->s))
+//if (pr->s != NULL && pr->space > ft_strlen(pr->s))
 		{
 			make_width(pr , 'c');
 		}
@@ -40,14 +42,17 @@ void    check_char(t_par *pr, va_list *ap, char sz)
 
 void    check_string(t_par *pr, va_list *ap)
 {
+	int st_sp = pr->space;
 	pr->s = va_arg(*ap, char *);
-	if (pr->s == NULL)
+	if (pr->s ==  NULL)
+		if (pr->space)
+			pr->s = "";
+		else
 		  pr->s = concat("", "(null)");
-	if (pr->space < pr->pres)
-	{
-		pr->wdth = 0;
-		pr->space = 0;
-	}
+		//if(pr->space < pr->pres)
+		//	pr->wdth = 0;
+	if(pr->pres == 0)
+		pr->s = "";
 	pr->res += ft_strlen(pr->s);
 	make_size(pr, 's', ap);
 	if (!pr->minus)
@@ -57,16 +62,22 @@ void    check_string(t_par *pr, va_list *ap)
 		{
 			pr->d = -1;
 			pr->res -= ft_strlen(pr->s);
+			pr->space -= ft_strlen(pr->s);
 			pr->pres++;
 			while(pr->pres-- && pr->pres > 0)
 			{
+				if(pr->pres > st_sp)
 				pr->res++;
 				ft_putchar(pr->s[++pr->d]);
 			}
 			pr->d = 0;
 		}
 		else
+		{	
+			if (pr->res < ft_strlen(pr->s) && pr->pres > ft_strlen(pr->s))
+				pr->res = ft_strlen(pr->s);
 			ft_putstr(pr->s);
+		}
 	}
 	else
 	{
@@ -104,7 +115,18 @@ void    check_pointer(t_par *pr, va_list *ap)
 {
 	pr->ptr = (uintmax_t)va_arg(*ap, void *);
 	pr->s = ft_unsitoa_base(pr->ptr, 16);
+//	if(pr->ptr == 0)
+//		pr->s = "";
 	pr->res += ft_strlen(pr->s);
+	if (pr->pres == 0)
+	{
+		if(pr->space)
+			pr->res++;
+		pr->res -= ft_strlen(pr->s);
+		pr->res += pr->space;
+		free(pr->s);
+		pr->s = "";
+	}
 	pr->d = -1;			
 		while(pr->s[++pr->d] != '\0')
 			pr->s[pr->d] = ft_tolower(pr->s[pr->d]);
@@ -113,7 +135,7 @@ void    check_pointer(t_par *pr, va_list *ap)
 		pr->space -= ft_strlen(pr->s);
 	if (!pr->minus)
 	{
-		if (pr->space > ft_strlen(pr->s))
+		//if (pr->space > ft_strlen(pr->s))
 		{
 			make_width(pr , 'p');
 		}
@@ -128,7 +150,7 @@ void    check_pointer(t_par *pr, va_list *ap)
 		pr->res += 2;
 		make_pres(pr, 'p');
         ft_putstr(pr->s);
-		if (pr->space > ft_strlen(pr->s))
+		//if (pr->space > ft_strlen(pr->s))
 		{
 			make_width(pr , 'p');
 		}

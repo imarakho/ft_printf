@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:41 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/23 17:41:41 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/28 15:18:38 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void    check_symbol(t_par *pr, va_list *ap, char md)
 {
         if(md == 'C')
         {
-                pr->uval = va_arg(*ap, unsigned int);
+                pr->uval = (unsigned int)va_arg(*ap, void *);
                 make_size(pr, 'C', ap);
         }
         else
@@ -101,9 +101,41 @@ void    check_symbol(t_par *pr, va_list *ap, char md)
 
 void    check_uncode(t_par *pr, va_list *ap, char md)
 {
-           pr->unval = (wchar_t *)va_arg(*ap, void *); 
-           //while (pr->unval++)
+        int len = 0;
+        int i = -1;
+           pr->unval = (wchar_t *)va_arg(*ap, void*);
+        if (pr->unval ==  NULL)
+        {
+                write(1, "(null)", 6);
+		pr->res += 6;
+                return ;
+        }
+           while(pr->unval[len])
+                len++;
+        if(pr->pres < len && pr->pres > 1)
+        {
+                pr->pres--;
+                len = pr->pres;
+        }
+        /*if(pr->tmp)
+        free(pr-tmp);
+        pr->tmp = (wchar_t *)malloc(sizeof(wchar_t) * len);*/
+        if (!pr->minus)
+        {
+               // make_width(pr, 's');
+           while (++i < len)
            {
                    check_symbol(pr, ap, md);
+                    pr->unval++;
            }
+        }
+        else
+        {
+                while (++i < len)
+           {
+                   check_symbol(pr, ap, md);
+                    pr->unval++;
+           }
+           //make_width(pr, 's');
+        }
 }

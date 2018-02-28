@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 15:29:04 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/23 16:22:31 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/26 19:58:33 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,15 @@ void	make_size(t_par *pr, char md, va_list *ap)
 	}
 	else if (pr->sz == 'l')
 	{
-		if (md == 'c' || md == 'd')
+		if ( md == 'd')
 			pr->val = (long)pr->val;
+		//else if (md == 'c')
+		//	check_symbol(pr, ap, 'C');
+			//pr->val = (wchar_t)pr->val;
 		else if ((md == 'o' || md == 'x' || md == 'X' || md == 'u' || md == 'U'))
+		{
 			pr->uval = (unsigned long)pr->uval;
+		}
 	}
 	else if (pr->sz == 'm')
 	{
@@ -57,7 +62,7 @@ void	make_size(t_par *pr, char md, va_list *ap)
 		if (md == 'c' || md == 'd')
 			pr->val = (intmax_t)pr->val;
 		else if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
-			pr->uval = (unsigned long long)pr->uval;
+			pr->uval = (uintmax_t)pr->uval;
 	}
 	else if (pr->sz == 'z')
 	{
@@ -107,4 +112,6 @@ void    check_size(const char *format, t_par *pr, int *i)
 		pr->sz = 'z';
 		*i += 1;
 	}
+	else
+		return ;
 }
