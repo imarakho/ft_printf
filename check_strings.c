@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/28 17:07:14 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:31:16 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,32 +81,28 @@ void    check_string(t_par *pr, va_list *ap)
 	}
 	else
 	{
-		 if(pr->pres > 1 && ft_strcmp(pr->s, "") && pr->space /*&& pr->space < pr->pres for site*/)
+		 /*if(pr->pres > 1 && ft_strcmp(pr->s, "") && pr->space && pr->space < pr->pres)
             {
                 pr->space += pr->pres;
                 pr->res += pr->pres;
-            }
+            }*/
 		if(pr->pres > 1 && pr->pres < ft_strlen(pr->s))
 		{
-			pr->d = pr->pres;
-			pr->res += pr->pres;
+			pr->d = -1;
 			pr->res -= ft_strlen(pr->s);
-			pr->d++;
-			int i = 0;
-			while(pr->d-- && pr->d > 0)
+			pr->space -= ft_strlen(pr->s);
+			pr->space++;
+			pr->pres++;
+			while(pr->pres-- && pr->pres > 0)
 			{
-				ft_putchar(pr->s[i++]);
-				//pr->space--;
+				if(pr->pres > st_sp)
+				pr->res++;
+				ft_putchar(pr->s[++pr->d]);
 			}
 			pr->d = 0;
 		}
 		else
 			ft_putstr(pr->s);
-			if(pr->pres > 1 && pr->pres < ft_strlen(pr->s) && pr->space > pr->pres)
-			{
-				pr->space = pr->space - pr->pres;
-				pr->space++;
-			}
 			make_width(pr , 's');
 	}
 }
