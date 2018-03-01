@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:41 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/28 15:18:38 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/01 17:41:03 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,19 +110,15 @@ void    check_uncode(t_par *pr, va_list *ap, char md)
 		pr->res += 6;
                 return ;
         }
-           while(pr->unval[len])
+           while (pr->unval[len])
                 len++;
         if(pr->pres < len && pr->pres > 1)
         {
                 pr->pres--;
                 len = pr->pres;
         }
-        /*if(pr->tmp)
-        free(pr-tmp);
-        pr->tmp = (wchar_t *)malloc(sizeof(wchar_t) * len);*/
         if (!pr->minus)
         {
-               // make_width(pr, 's');
            while (++i < len)
            {
                    check_symbol(pr, ap, md);
@@ -136,6 +132,5 @@ void    check_uncode(t_par *pr, va_list *ap, char md)
                    check_symbol(pr, ap, md);
                     pr->unval++;
            }
-           //make_width(pr, 's');
         }
 }

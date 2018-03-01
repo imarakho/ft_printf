@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/03/01 16:27:39 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/01 18:36:23 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void    check_string(t_par *pr, va_list *ap)
 		if (pr->space)
 			pr->s = "";
 		else
-		  pr->s = concat("", "(null)");
-		//if(pr->space < pr->pres)
-		//	pr->wdth = 0;
+			{
+		 		 pr->s = concat("", "(null)");
+			}
 	if(pr->pres == 0)
 		pr->s = "";
 	pr->len = ft_strlen(pr->s);
@@ -76,11 +76,11 @@ void    check_string(t_par *pr, va_list *ap)
 		}
 		else
 		{	
-			//printf("res%d\n", pr->res);
+			if(pr->space > pr->len)
+				pr->space -= pr->len;
 			if (pr->res < pr->len && pr->pres > pr->len)
 				pr->res += pr->len - st_sp;
 			write(1, pr->s, pr->len);
-			//ft_putstr(pr->s);
 		}
 	}
 	else
@@ -95,7 +95,7 @@ void    check_string(t_par *pr, va_list *ap)
 			pr->d = -1;
 			pr->res -= pr->len;
 			pr->space -= pr->len;
-			pr->space++;
+			pr->space += pr->pres;
 			pr->pres++;
 			while(pr->pres-- && pr->pres > 0)
 			{
@@ -107,7 +107,6 @@ void    check_string(t_par *pr, va_list *ap)
 		}
 		else
 			write(1, pr->s, pr->len);
-			//ft_putstr(pr->s);
 			make_width(pr , 's');
 	}
 }
@@ -116,8 +115,6 @@ void    check_pointer(t_par *pr, va_list *ap)
 {
 	pr->ptr = (uintmax_t)va_arg(*ap, void *);
 	pr->s = ft_unsitoa_base(pr->ptr, 16);
-//	if(pr->ptr == 0)
-//			pr->s = "";
 	pr->len = ft_strlen(pr->s);
 	if(pr->len + 2 >= pr->space)
 		pr->wdth = 0;
@@ -157,9 +154,8 @@ void    check_pointer(t_par *pr, va_list *ap)
 		pr->space -= 2;
 		make_pres(pr, 'p');
         write(1, pr->s, pr->len);
-		//if (pr->space > ft_strlen(pr->s))
-		{
-			make_width(pr , 'p');
-		}
+		make_width(pr , 'p');
 	}
+	if(pr->s != "")
+		free(pr->s);
 }

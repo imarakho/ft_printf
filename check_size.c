@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 15:29:04 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/26 19:58:33 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/01 17:35:16 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	make_size(t_par *pr, char md, va_list *ap)
 			pr->val = (int)pr->val;
 		else if (md == 'o' || md == 'x' || md == 'X' || md == 'u')
 			pr->uval = (unsigned int)pr->uval;
-		else if (md == 'U' || md == 'O' || md == 'D' /*|| md == 'C' || md == 'S'*/)
+		else if (md == 'U' || md == 'O' || md == 'D')
 			pr->uval = (unsigned long)pr->uval;
 
 	}
@@ -42,13 +42,8 @@ void	make_size(t_par *pr, char md, va_list *ap)
 	{
 		if ( md == 'd')
 			pr->val = (long)pr->val;
-		//else if (md == 'c')
-		//	check_symbol(pr, ap, 'C');
-			//pr->val = (wchar_t)pr->val;
 		else if ((md == 'o' || md == 'x' || md == 'X' || md == 'u' || md == 'U'))
-		{
 			pr->uval = (unsigned long)pr->uval;
-		}
 	}
 	else if (pr->sz == 'm')
 	{
