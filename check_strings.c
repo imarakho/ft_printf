@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/03/01 18:36:23 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/01 19:05:11 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void    check_char(t_par *pr, va_list *ap, char sz)
 void    check_string(t_par *pr, va_list *ap)
 {
 	int st_sp = pr->space;
+
 	pr->s = va_arg(*ap, char *);
 	if (pr->s ==  NULL)
 		if (pr->space)

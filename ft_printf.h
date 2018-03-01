@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:23:09 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/28 17:59:05 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/01 19:31:18 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct      s_par
     short           alter;
     char            *width;
     uintmax_t       ptr;
+    unsigned int    mask[4];
     int             res;
     int             pres;
     char            sz;

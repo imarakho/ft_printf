@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 15:28:28 by imarakho          #+#    #+#             */
-/*   Updated: 2018/03/01 18:04:49 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/01 19:37:36 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	check_int(t_par *pr, va_list *ap, char sz)
 	st_sp = pr->space;
 	pr->val = va_arg(*ap, intmax_t);
 	make_size(pr, sz, ap);
-	//if(pr->s == NULL)
-//		free(pr->s);
 	pr->s = ft_itoa_base(pr->val, 10);
 	int_checks(pr);
 	if (pr->md_sp && !pr->plus && !pr->minus && pr->val >= 0)
@@ -286,12 +284,6 @@ void	check_heX(t_par *pr, va_list *ap)
 		free(pr->s);
 		pr->s = "";
 	}
-	else if (pr->alter && ft_strcmp(pr->s, "0"))
-	{
-		pr->s = concat("0X", pr->s);
-		if (pr->res < ft_strlen(pr->s))
-			pr->space -= 2;
-	}
 	pr->len = ft_strlen(pr->s);
 	if (pr->space < pr->len)
 		pr->res += pr->len;
@@ -299,12 +291,16 @@ void	check_heX(t_par *pr, va_list *ap)
 	{
 		if (pr->alter && pr->nll && ft_strcmp(pr->s, "0"))
 		{
-			free(pr->s);
-			pr->s = ft_unsitoa_base(pr->uval, 16);
 			pr->space -= 2;
 			write(1, "0X", 2);
 		}
 		make_width(pr, 'X');
+		if (pr->alter && ft_strcmp(pr->s, "0"))
+		{
+			write(1, "0X", 2);
+			pr->res += 2;
+			pr->space -= 2;
+		}
 		make_pres(pr, 'X');
 		write(1, pr->s, ft_strlen(pr->s));
 	}
