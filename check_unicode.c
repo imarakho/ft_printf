@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:41 by imarakho          #+#    #+#             */
-/*   Updated: 2018/03/01 19:32:53 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/01 19:40:13 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ void    check_symbol(t_par *pr, va_list *ap, char md)
         {
         v = pr->uval;
         size = ft_strlen(ft_unsitoa_base(pr->uval, 2));
-        if(pr->s != "")
-        free(pr->s);
+       // if(pr->s != "")
+       // free(pr->s);
          pr->s = ft_unsitoa_base(pr->uval, 2);
         }
         else
         {
         v = *pr->unval;
         size = ft_strlen(ft_unsitoa_base(*pr->unval, 2));
-        if(pr->s != "")
-        free(pr->s);
+        //if(pr->s != "")
+      //  free(pr->s);
         pr->s = ft_unsitoa_base(*pr->unval, 2);
         }
         unsigned int octet;
