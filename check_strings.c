@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/03/01 19:05:11 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/01 19:59:21 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,7 @@ void    check_string(t_par *pr, va_list *ap)
 		{
 			pr->d = -1;
 			pr->res -= pr->len;
-			pr->space -= pr->len;
-			pr->space += pr->pres;
+			pr->space -= pr->pres;
 			pr->pres++;
 			while(pr->pres-- && pr->pres > 0)
 			{
@@ -108,7 +107,7 @@ void    check_string(t_par *pr, va_list *ap)
 		}
 		else
 			write(1, pr->s, pr->len);
-			make_width(pr , 's');
+		make_width(pr , 's');
 	}
 }
 

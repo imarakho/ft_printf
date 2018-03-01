@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:41:31 by imarakho          #+#    #+#             */
-/*   Updated: 2018/03/01 19:11:06 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/01 19:54:51 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ int		ft_printf(const char * format, ... )
 					ft_putchar(format[i]);
 					make_width(&pr , '%');
 				}
-			//make_width(&pr , '%');
-			//ft_putchar(format[i]);
 		}
 		else if (format[i] == 'S' || (pr.sz == 'l' && format[i] == 's'))
 			check_uncode(&pr, &ap, 'S');
@@ -93,20 +91,5 @@ int		ft_printf(const char * format, ... )
 	}
 	}
 	va_end (ap);
-//	if(pr.res == 0)
-//		pr.res++;
 	return (pr.res);
 }
-/*
-int     main()
-{
-	//setlocale(LC_ALL, "");
-	// char *s = setlocale(LC_ALL, "ы");
-	//printf("%d\n" ,ft_printf("%\n"));
-	//printf("%#.o\n", 42);
-	//ft_printf("%#.o\n", 42);
-	printf("\n%d\n" , ft_printf("%15.4d", -42));
-	printf("\n%d\n" , printf("%15.4d", -42));
-	return (0);
-}
-*/
