@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/28 17:31:16 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/01 16:27:39 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,12 @@ void    check_char(t_par *pr, va_list *ap, char sz)
 {
 	pr->uval = va_arg(*ap, int);
 	make_size(pr, sz, ap);
-	if (pr->space < ft_strlen(pr->s))
-		pr->res += ft_strlen(pr->s);
-	else if (!pr->wdth)
+	if (!pr->wdth)
 		pr->res++;
-	if(pr->space > 1 && pr->nll && pr->uval == 0)
+	if(pr->space > 1 && pr->nll && pr->uval == 0 && pr->pres == 0)
 		pr->space--;
 	if (!pr->minus)
 	{
-		//if (pr->space > ft_strlen(pr->s))
 		{
 			make_width(pr , 'c');
 		}
@@ -33,7 +30,6 @@ void    check_char(t_par *pr, va_list *ap, char sz)
 	else
 	{
         ft_putchar(pr->uval);
-//if (pr->s != NULL && pr->space > ft_strlen(pr->s))
 		{
 			make_width(pr , 'c');
 		}
@@ -53,16 +49,22 @@ void    check_string(t_par *pr, va_list *ap)
 		//	pr->wdth = 0;
 	if(pr->pres == 0)
 		pr->s = "";
-	pr->res += ft_strlen(pr->s);
+	pr->len = ft_strlen(pr->s);
+	pr->res += pr->len;
 	make_size(pr, 's', ap);
 	if (!pr->minus)
 	{
+		if(pr->space > pr->len && pr->pres == 1)
+		{
+			pr->res -= pr->len;
+			pr->space -= pr->len;
+		}
 			make_width(pr , 's');
-		if(pr->pres > 1 && pr->pres < ft_strlen(pr->s))
+		if(pr->pres > 1 && pr->pres < pr->len)
 		{
 			pr->d = -1;
-			pr->res -= ft_strlen(pr->s);
-			pr->space -= ft_strlen(pr->s);
+			pr->res -= pr->len;
+			pr->space -= pr->len;
 			pr->pres++;
 			while(pr->pres-- && pr->pres > 0)
 			{
@@ -74,23 +76,25 @@ void    check_string(t_par *pr, va_list *ap)
 		}
 		else
 		{	
-			if (pr->res < ft_strlen(pr->s) && pr->pres > ft_strlen(pr->s))
-				pr->res = ft_strlen(pr->s);
-			ft_putstr(pr->s);
+			//printf("res%d\n", pr->res);
+			if (pr->res < pr->len && pr->pres > pr->len)
+				pr->res += pr->len - st_sp;
+			write(1, pr->s, pr->len);
+			//ft_putstr(pr->s);
 		}
 	}
 	else
 	{
-		 /*if(pr->pres > 1 && ft_strcmp(pr->s, "") && pr->space && pr->space < pr->pres)
-            {
-                pr->space += pr->pres;
-                pr->res += pr->pres;
-            }*/
-		if(pr->pres > 1 && pr->pres < ft_strlen(pr->s))
+		if(pr->space > pr->len && pr->pres == 1)
+		{
+			pr->res -= pr->len;
+			pr->space -= pr->len;
+		}
+		if(pr->pres > 1 && pr->pres < pr->len)
 		{
 			pr->d = -1;
-			pr->res -= ft_strlen(pr->s);
-			pr->space -= ft_strlen(pr->s);
+			pr->res -= pr->len;
+			pr->space -= pr->len;
 			pr->space++;
 			pr->pres++;
 			while(pr->pres-- && pr->pres > 0)
@@ -102,7 +106,8 @@ void    check_string(t_par *pr, va_list *ap)
 			pr->d = 0;
 		}
 		else
-			ft_putstr(pr->s);
+			write(1, pr->s, pr->len);
+			//ft_putstr(pr->s);
 			make_width(pr , 's');
 	}
 }
@@ -112,40 +117,46 @@ void    check_pointer(t_par *pr, va_list *ap)
 	pr->ptr = (uintmax_t)va_arg(*ap, void *);
 	pr->s = ft_unsitoa_base(pr->ptr, 16);
 //	if(pr->ptr == 0)
-//		pr->s = "";
-	pr->res += ft_strlen(pr->s);
-	if (pr->pres == 0)
+//			pr->s = "";
+	pr->len = ft_strlen(pr->s);
+	if(pr->len + 2 >= pr->space)
+		pr->wdth = 0;
+	if (pr->pres == 0 && pr->ptr == 0)
 	{
-		if(pr->space)
-			pr->res++;
-		pr->res -= ft_strlen(pr->s);
-		pr->res += pr->space;
 		free(pr->s);
 		pr->s = "";
+		pr->len = 0;
+		
+	}
+	if(pr->len + 2 > pr->space)
+	{
+		pr->res -= pr->space;
+		pr->res += pr->len;
 	}
 	pr->d = -1;			
 		while(pr->s[++pr->d] != '\0')
 			pr->s[pr->d] = ft_tolower(pr->s[pr->d]);
 		pr->d = 0;
-	if(pr->space > ft_strlen(pr->s))
-		pr->space -= ft_strlen(pr->s);
 	if (!pr->minus)
 	{
-		//if (pr->space > ft_strlen(pr->s))
+		if(pr->space < pr->len + 2)
+			pr->res += 2;
+		pr->space -= 2;
 		{
 			make_width(pr , 'p');
 		}
 		ft_putstr("0x");
-		pr->res += 2;
 		make_pres(pr, 'p');
-		ft_putstr(pr->s);
+		write(1, pr->s, pr->len);
 	}
 	else
 	{
 		ft_putstr("0x");
-		pr->res += 2;
+		if(pr->space < pr->len + 2)
+			pr->res += 2;
+		pr->space -= 2;
 		make_pres(pr, 'p');
-        ft_putstr(pr->s);
+        write(1, pr->s, pr->len);
 		//if (pr->space > ft_strlen(pr->s))
 		{
 			make_width(pr , 'p');

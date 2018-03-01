@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:41:31 by imarakho          #+#    #+#             */
-/*   Updated: 2018/02/28 17:51:26 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/01 14:14:57 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ int		ft_printf(const char * format, ... )
 		else if ((format[i] == 's'))
 			check_string(&pr, &ap);
 		else if ((pr.sz == 'l' && format[i] == 'c') || format[i] == 'C')
-				if(MB_CUR_MAX)
-				check_symbol(&pr, &ap, 'C');
-				else
+				if(MB_CUR_MAX == 1)
 					check_char(&pr, &ap, 'c');
+				else
+					check_symbol(&pr, &ap, 'C');
 		else if (format[i] == 'c')
 			check_char(&pr, &ap, 'c');
 		else if (format[i] == 'p')

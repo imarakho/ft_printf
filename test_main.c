@@ -3,7 +3,7 @@
 int     main()
 {
     setlocale(P_ALL, "");
-   printf("%d\n",printf("%lx, %lx", 0, ULONG_MAX));
-   printf("%d\n", ft_printf("%lx, %lx", 0, ULONG_MAX));
+    printf("%d\n",printf("{%-13p}", &strlen));
+   printf("%d\n", ft_printf("{%-13p}", &strlen));
     return (0);
 }
