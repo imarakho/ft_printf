@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smykyten <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 15:40:08 by smykyten          #+#    #+#             */
-/*   Updated: 2016/11/25 21:35:10 by smykyten         ###   ########.fr       */
+/*   Updated: 2018/03/01 20:14:30 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 void	*ft_memalloc(size_t size)
 {

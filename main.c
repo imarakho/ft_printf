@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:41:31 by imarakho          #+#    #+#             */
-/*   Updated: 2018/03/01 19:54:51 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/02 14:38:06 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int		ft_printf(const char * format, ... )
 	int i;
 	t_par pr;
 	pr.res = 0;
-
 	va_start(ap, format);
 	i = -1;
 	if (!ft_strcmp(format, "%"))
@@ -43,7 +42,7 @@ int		ft_printf(const char * format, ... )
 			check_hex(&pr, &ap);
 		}
 		else if (format[i] == 'X')
-			check_heX(&pr, &ap);
+			check_hexb(&pr, &ap);
 		else if (format[i] == 'o')
 			check_octal(&pr, 'o', &ap);
 		else if (format[i] == 'O')

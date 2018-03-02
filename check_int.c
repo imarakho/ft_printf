@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 15:28:28 by imarakho          #+#    #+#             */
-/*   Updated: 2018/03/01 19:37:36 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/02 15:38:59 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 void	int_checks(t_par *pr)
 {
 	if (pr->pres == 0 && pr->val == 0)
+	{
+		free(pr->s);
 		pr->s = "";
+	}
 	pr->len = ft_strlen(pr->s);
 	if (pr->minus && pr->pres - pr->len == 1 && !pr->plus)
 	{
@@ -37,6 +40,7 @@ void	int_checks(t_par *pr)
 			pr->res += (pr->len - pr->space);
 		}
 	}
+
 }
 
 void	check_int(t_par *pr, va_list *ap, char sz)
@@ -45,7 +49,8 @@ void	check_int(t_par *pr, va_list *ap, char sz)
 	
 	st_sp = pr->space;
 	pr->val = va_arg(*ap, intmax_t);
-	make_size(pr, sz, ap);
+	make_size(pr, sz);
+	ft_strcmp(pr->s, "")? pr->s = "" : 0;
 	pr->s = ft_itoa_base(pr->val, 10);
 	int_checks(pr);
 	if (pr->md_sp && !pr->plus && !pr->minus && pr->val >= 0)
@@ -66,7 +71,7 @@ void	check_int(t_par *pr, va_list *ap, char sz)
 			}
 			if (pr->space <= pr->len
 			&& pr->pres <= pr->len && pr->val == 0)
-			pr->res++;
+				pr->res++;
 			pr->space--;
 		}
 		if (pr->val < 0 && (pr->nll || pr->pres > 1))
@@ -122,16 +127,16 @@ void	check_int(t_par *pr, va_list *ap, char sz)
 		write(1, pr->s, ft_strlen(pr->s));
 		make_width(pr, 'd');
 	}
-	if (pr->res < st_sp)
-		pr->res = st_sp;
-	if(pr->s != "")
-		free(pr->s);
+	pr->res < st_sp ?pr->res = st_sp : 0;
+	ft_strcmp(pr->s, "") ? free(pr->s) : 0;
 }
 
 void	check_uns_int(t_par *pr, va_list *ap)
 {
 	pr->uval = va_arg(*ap, uintmax_t);
-	make_size(pr, 'u', ap);
+	make_size(pr, 'u');
+	if (ft_strcmp(pr->s, ""))
+		free(pr->s);
 	pr->s = ft_unsitoa_base(pr->uval, 10);
 	if (pr->pres == 0 && pr->uval == 0)
 		pr->s = "";
@@ -150,17 +155,22 @@ void	check_uns_int(t_par *pr, va_list *ap)
 		write(1, pr->s, pr->len);
 		make_width(pr, 'u');
 	}
-	if(pr->s != "")
+	if (ft_strcmp(pr->s, ""))
 		free(pr->s);
 }
 
 void	check_uns_long(t_par *pr, va_list *ap)
 {
 	pr->uval = va_arg(*ap, uintmax_t);
-	make_size(pr, 'U', ap);
+	make_size(pr, 'U');
+	if (ft_strcmp(pr->s, ""))
+		free(pr->s);
 	pr->s = ft_unsitoa_base(pr->uval, 10);
 	if (pr->pres == 0 && pr->val == 0)
+	{
+		free(pr->s);
 		pr->s = "";
+	}
 	pr->len = ft_strlen(pr->s);
 	if (pr->space < pr->len)
 		pr->res += pr->len;
@@ -174,14 +184,16 @@ void	check_uns_long(t_par *pr, va_list *ap)
 		write(1, pr->s, pr->len);
 		make_width(pr, 'U');
 	}
-	if(pr->s != "")
+	if (ft_strcmp(pr->s, ""))
 		free(pr->s);
 }
 
 void	check_octal(t_par *pr,char sz, va_list *ap)
 {
 	pr->uval = va_arg(*ap, uintmax_t);
-	make_size(pr, sz, ap);
+	make_size(pr, sz);
+	if (ft_strcmp(pr->s, ""))
+		free(pr->s);
 	pr->s = ft_unsitoa_base(pr->uval, 8);
 	if (pr->pres == 0 && pr->uval == 0)
 	{
@@ -217,13 +229,15 @@ void	check_octal(t_par *pr,char sz, va_list *ap)
 		write(1, pr->s, pr->len);
 		make_width(pr, 'o');
 	}
-	if(pr->s != "")
+	if (ft_strcmp(pr->s, ""))
 		free(pr->s);
 }
 void	check_hex(t_par *pr, va_list *ap)
 {
 	pr->uval = va_arg(*ap, unsigned long);
-	make_size(pr, 'x', ap);
+	make_size(pr, 'x');
+//	if (ft_strcmp(pr->s, ""))
+//		free(pr->s);
 	pr->s = ft_unsitoa_base(pr->uval, 16);
 	if (pr->pres == 0 && pr->uval == 0)
 	{
@@ -235,7 +249,7 @@ void	check_hex(t_par *pr, va_list *ap)
 	 else if (pr->alter && ft_strcmp(pr->s, "0"))
 	{
 		pr->s = concat("0x", pr->s);
-		if (pr->res < ft_strlen(pr->s))
+		if ((unsigned long)pr->res < ft_strlen(pr->s))
 			pr->space -= 2;
 	}
 	pr->len = ft_strlen(pr->s);
@@ -268,14 +282,16 @@ void	check_hex(t_par *pr, va_list *ap)
 		write(1, pr->s, ft_strlen(pr->s));
 		make_width(pr, 'x');
 	}
-	if(pr->s != "")
-		free(pr->s);
+	//if (ft_strcmp(pr->s, "")) //with a question
+	//	free(pr->s);
 }
 
-void	check_heX(t_par *pr, va_list *ap)
+void	check_hexb(t_par *pr, va_list *ap)
 {
 	pr->uval = va_arg(*ap, uintmax_t);
-	make_size(pr, 'X', ap);
+	make_size(pr, 'X');
+	if (ft_strcmp(pr->s, ""))
+		free(pr->s);
 	pr->s = ft_unsitoa_base(pr->uval, 16);
 	if (pr->pres == 0 && pr->uval == 0)
 	{
@@ -310,6 +326,6 @@ void	check_heX(t_par *pr, va_list *ap)
 		write(1, pr->s, ft_strlen(pr->s));
 		make_width(pr, 'X');
 	}
-	if(pr->s != "")
+	if (ft_strcmp(pr->s, ""))
 		free(pr->s);
 }

@@ -6,11 +6,21 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:44:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/03/01 19:57:31 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/02 13:41:48 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*for makefile
+	$(NAME):
+	gcc -c $(FLAGS) $(SRC) -I ft_printf.h
+	ar	rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+
+	@gcc $(FLAGS) $(SRC) -o $(NAME)
+	@echo "Compilation done!"
+*/
 
 char* concat(char *s1, char *s2) {
 
@@ -20,22 +30,24 @@ char* concat(char *s1, char *s2) {
         
         result = (char *)malloc(len1 + len2 + 1);
         ft_memcpy(result, s1, len1);
-        ft_memcpy(result + len1, s2, len2 + 1);    
-
+        ft_memcpy(result + len1, s2, len2 + 1);
+        
         return result;
     }
 
 void    make_pres(t_par *pr, char spec)
 {
-    if (pr->pres <= ft_strlen(pr->s))
+    if (spec == 0)
+        return ;
+    if ((unsigned long)pr->pres <= ft_strlen(pr->s))
     {
-        if(pr->res < ft_strlen(pr->s))
+        if((unsigned long)pr->res < ft_strlen(pr->s))
             pr->res = ft_strlen(pr->s);
         return ;
     }
     if (pr->pres > 1)
     {
-        if (pr->pres >= ft_strlen(pr->s))
+        if ((unsigned long)pr->pres >= ft_strlen(pr->s))
         {
             pr->pres -= ft_strlen(pr->s);
             pr->res += pr->pres;
@@ -49,23 +61,23 @@ void	make_width(t_par *pr, char spec)
 { 
     if (!pr->wdth)
         return ;
-    if (pr->space < ft_strlen(pr->s) && spec != 's')
+    if ((unsigned long)pr->space < ft_strlen(pr->s) && spec != 's')
     {
         pr->res -= pr->space;
         return ;
     }
-            if(pr->pres > ft_strlen(pr->s))
+            if((unsigned long)pr->pres > ft_strlen(pr->s))
             {
                 if(spec != 's')
                 pr->space -= pr->pres;
                 else
                     pr->space -= ft_strlen(pr->s);
-                if(pr->res > ft_strlen(pr->s))
+                if((unsigned long)pr->res > ft_strlen(pr->s))
                     pr->res -= ft_strlen(pr->s);
             }
          else if (spec != 's')
                 pr->space -= ft_strlen(pr->s);
-            else if (pr->pres > 1 && pr->pres < ft_strlen(pr->s))
+            else if (pr->pres > 1 && (unsigned long)pr->pres < ft_strlen(pr->s))
             {
                 pr->space -= pr->pres;
             }
@@ -106,7 +118,11 @@ void    start_flags(t_par *pr)
     pr->flag = 1;
     pr->pres = 1;
     pr->md_sp = 0;
+  //  if(pr->s)
+  //  {
+//    free(pr->s);
     pr->s = "";
+  //  }
     pr->sz = 0;
 }
 
@@ -168,9 +184,7 @@ void    check_flags(const char *format, int *i, t_par *pr, va_list *ap)
 
         }
         else if(ft_isdigit(format[*i]) && format[*i] != '0')
-        { 
             parse_width(i, pr, format);
-        }
         else
             pr->flag = 0 ;
     }
