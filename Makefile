@@ -6,19 +6,21 @@ SRC = main.c \
 	ft_putchar.c \
 	ft_strlen.c \
 	ft_toupper.c \
-	ft_atoi.c \
 	ft_isdigit.c \
 	ft_tolower.c \
 	ft_strcmp.c \
 	ft_strcat.c \
 	ft_strdup.c \
 	flags.c \
+	ft_atoi.c \
 	check_int.c \
 	check_strings.c \
-	print_memory.c \
 	check_size.c \
 	check_unicode.c \
-	ft_memcpy.c
+	ft_memcpy.c \
+	width.c \
+	check_octal.c \
+	check_hex.c
 
 FLAGS = -c -Wall -Wextra -Werror
 

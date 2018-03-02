@@ -6,7 +6,7 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:23:09 by imarakho          #+#    #+#             */
-/*   Updated: 2018/03/02 15:11:27 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/02 19:37:00 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 typedef struct		s_par
 {
+	unsigned int	v;
+	unsigned int	octet;
 	intmax_t		len;
 	int				d;
 	char			*s;
@@ -44,10 +46,11 @@ typedef struct		s_par
 	intmax_t		val;
 	uintmax_t		uval;
 	wchar_t			*unval;
-	wchar_t			*tmp;
 	wchar_t			unc_val;
 }					t_par;
-void				*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
+
+void				*ft_memcpy(void *restrict dst,
+					const void *restrict src, size_t n);
 char				*ft_itoa_base(long long int value, int base);
 char				*ft_unsitoa_base(unsigned long long int value, int base);
 char				*ft_itoa_baseptr(long value, int base);
@@ -66,6 +69,7 @@ void				make_width(t_par *pr, char spec);
 void				check_flags(const char *format, int *i,
 					t_par *pr, va_list *ap);
 void				check_int(t_par *pr, va_list *ap, char sz);
+void				parse_width(int *i, t_par *pr, const char *format);
 void				check_octal(t_par *pr, char sz, va_list *ap);
 void				check_hex(t_par *pr, va_list *ap);
 void				check_hexb(t_par *pr, va_list *ap);

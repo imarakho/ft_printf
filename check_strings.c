@@ -6,31 +6,11 @@
 /*   By: imarakho <imarakho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 14:21:58 by imarakho          #+#    #+#             */
-/*   Updated: 2018/03/02 15:37:00 by imarakho         ###   ########.fr       */
+/*   Updated: 2018/03/02 17:41:13 by imarakho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void	check_char(t_par *pr, va_list *ap, char sz)
-{
-	pr->uval = va_arg(*ap, int);
-	make_size(pr, sz);
-	if (!pr->wdth)
-		pr->res++;
-	if (pr->space > 1 && pr->nll && pr->uval == 0 && pr->pres == 0)
-		pr->space--;
-	if (!pr->minus)
-	{
-		make_width(pr, 'c');
-		ft_putchar(pr->uval);
-	}
-	else
-	{
-		ft_putchar(pr->uval);
-		make_width(pr, 'c');
-	}
-}
 
 void	string_pl(t_par *pr)
 {
@@ -53,7 +33,7 @@ void	string_pl(t_par *pr)
 		}
 	}
 	else
-	{	
+	{
 		pr->space > pr->len ? pr->space -= pr->len : 0;
 		if (pr->res < pr->len && pr->pres > pr->len)
 			pr->res += pr->len - pr->st_sp;
