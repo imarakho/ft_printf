@@ -1,7 +1,6 @@
 NAME = libftprintf.a
 SRC = main.c \
 	itoa_base.c \
-	ft_bzero.c \
 	ft_putstr.c \
 	ft_putchar.c \
 	ft_strlen.c \
@@ -34,7 +33,7 @@ $(NAME):
 	ranlib $(NAME)
 
 clean:
-	rm	-f $(OBJ)
+	rm	-rf $(OBJ)
 
 fclean: clean
 	rm	-f $(NAME)
